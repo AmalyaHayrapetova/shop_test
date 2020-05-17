@@ -4,7 +4,6 @@ import UserIcon from "./images/user.png"
 import SearchIcon from "./images/search.png"
 import BagIcon from "./images/bag.png"
 import CenteredTabs from "./Tabs"
-import IconLabelTabs from "./IconsTabs"
 
 
 
@@ -38,7 +37,6 @@ class Header extends React.Component {
       </div>
   <div className="Title">
       <div className = "IconsTabsSection">
-       <IconLabelTabs/>
       </div>
       </div>
 

@@ -8,6 +8,7 @@ import ShoppingCard from "./ShoppingCard"
 import Cards from "./Cards"
 import BlogCards from "./BlogCards"
 import AboutUsPage from "./AboutUsPage"
+import Checkout from "./Checkout"
 // import Blog from "./src/Blog"
 
 class  App extends React.Component {
@@ -19,6 +20,7 @@ class  App extends React.Component {
        <Heading/> 
              {/* <Banner/> */}
              {/* <AboutUsPage/> */}
+             <Checkout />
       {/* <ShoppingCard/> */}
       {/* <Cards/>
       <BlogCards/> */}
