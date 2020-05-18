@@ -10,12 +10,13 @@ import BlogCards from "./BlogCards"
 import AboutUsPage from "./AboutUsPage"
 import Checkout from "./Checkout"
 // import Blog from "./src/Blog"
+import Routes from './Routes';
 
 class  App extends React.Component {
 
   render() {
   return (
-    // <body>s
+    // <body
     <div className="App">
        <Heading/> 
              <Banner/>
@@ -27,9 +28,9 @@ class  App extends React.Component {
       {/* <SignUp/> */}
       {/* <SignIn/> */}
       <Footer />
-
+{/* <Routes/> */}
     </div>
-    // </body>
+
   );
 }
 }

@@ -8,10 +8,15 @@ import { MdShoppingCart } from "react-icons/md";
 import { useState } from "react";
 import "./css/header.css";
 import ShoppingCart from "./ShoppingCart"
+import history from './history';
 
 class Header extends React.Component {
 
-  
+  openShoppingCartHandler= () => {
+
+
+  }
+
   render() {
     return (
       <header>
@@ -34,37 +39,37 @@ class Header extends React.Component {
             <div className="CategoriesMenu">
               <div className="CategoriesMain">
                 <div className="CategoryContainer">
-                  <a className="Catgory" data-comp="LinkAnimate" href="/">
+                  <a className="Catgory" data-comp="LinkAnimate" href="/clothing">
                     <span className="CategoryTab"> CLOTHING </span>
                   </a>
                 </div>
 
                 <div className="CategoryContainer">
-                  <a className="Catgory" data-comp="LinkAnimate" href="/">
+                  <a className="Catgory" data-comp="LinkAnimate" href="/shoes">
                     <span className="CategoryTab"> SHOES </span>
                   </a>
                 </div>
 
                 <div className="CategoryContainer">
-                  <a className="Catgory" data-comp="LinkAnimate" href="/">
+                  <a className="Catgory" data-comp="LinkAnimate" href="/accessorize">
                     <span className="CategoryTab"> ACCESSORIZE </span>
                   </a>
                 </div>
 
                 <div className="CategoryContainer">
-                  <a className="Catgory" data-comp="LinkAnimate" href="/">
+                  <a className="Catgory" data-comp="LinkAnimate" href="/bridal">
                     <span className="CategoryTab"> BRIDAL </span>
                   </a>
                 </div>
 
                 <div className="CategoryContainer">
-                  <a className="Catgory" data-comp="LinkAnimate" href="/">
+                  <a className="Catgory" data-comp="LinkAnimate" href="/shoes">
                     <span className="CategoryTab"> STORES </span>
                   </a>
                 </div>
 
                 <div className="CategoryContainer">
-                  <a className="Catgory" data-comp="LinkAnimate" href="/">
+                  <a className="Catgory" data-comp="LinkAnimate" href="/blog">
                     <span className="CategoryTab"> BLOG </span>
                   </a>
                 </div>
@@ -85,11 +90,12 @@ class Header extends React.Component {
               </svg>
             </button>
           </div>
-          <button className="OpenCart" aria-label="Open Cart" >
+          <button className="OpenCart" aria-label="Open Cart" onClick={() => history.push('/ShoppingCart')} >
             <svg width="16px" height="14px" viewBox="0 0 16 14">
               <MdShoppingCart className="react-icons" size={20} />
             </svg>
           </button>
+
         </div>
       </header>
     );

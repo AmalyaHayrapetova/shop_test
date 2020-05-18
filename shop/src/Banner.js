@@ -34,38 +34,38 @@ function myFunction() {
             {/* <img className="BannerImage" src={StoreImage} alt="Store Image" /> */}
             <img className="BannerImage" src={slideImages[0]} />
 
-            <div className="BannerImageMiddle">
+            {/* <div className="BannerImageMiddle">
               <div className="ButtonContainer">
                 <button className="StoreButton" onClick={myFunction()}>
                   {" "}
                   Shop Now!
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="BannerMain">
             <img className="BannerImage" src={slideImages[1]} />
-            <div className="BannerImageMiddle">
+            {/* <div className="BannerImageMiddle">
               <div className="ButtonContainer">
                 <button className="StoreButton" onClick={myFunction()}>
                   {" "}
                   Shop Now!
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="BannerMain">
             <img className="BannerImage" src={slideImages[2]} />
-            <div className="BannerImageMiddle">
+            {/* <div className="BannerImageMiddle">
               <div className="ButtonContainer">
                 <button className="StoreButton" onClick={myFunction()}>
                   {" "}
                   Shop Now!
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </Slide>
       </div>

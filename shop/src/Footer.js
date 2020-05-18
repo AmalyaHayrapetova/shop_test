@@ -18,7 +18,7 @@ class Footer extends React.Component{
             <section className="FooterSection">
             <h4 className="FooterHeaders">About</h4>
             <ul className="FooterSectionList">
-              <li className="FooterSubList">Company </li>
+              <li className="FooterSubList" href= "/about/company">Company </li>
               <li className="FooterSubList">Stores </li>
               <li className="FooterSubList">How to order</li>
               <li className="FooterSubList">Trust & Safety </li>
