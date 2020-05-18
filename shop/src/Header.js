@@ -22,7 +22,7 @@ class Header extends React.Component {
       <header>
         <div className="MainHeader">
           <div className="Title">
-            <h1 className="title">Shopaholic.</h1>
+            <h1 className="title">Shopoholic.</h1>
             <link
               href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&display=swap"
               rel="stylesheet"
