@@ -4,7 +4,7 @@ import Banner from "./Banner";
 import Footer from "./Footer";
 import SignUp from "./SignUp"
 import SignIn from "./SignIn"
-import ShoppingCard from "./ShoppingCard"
+import ShoppingCart from "./ShoppingCart"
 import Cards from "./Cards"
 import BlogCards from "./BlogCards"
 import AboutUsPage from "./AboutUsPage"
@@ -18,14 +18,12 @@ class  App extends React.Component {
     // <body>s
     <div className="App">
        <Heading/> 
-             {/* <Banner/> */}
+             <Banner/>
              {/* <AboutUsPage/> */}
-             <Checkout />
+             {/* <Checkout /> */}
       {/* <ShoppingCard/> */}
-      {/* <Cards/>
-      <BlogCards/> */}
-      {/* <Blog/> */}
-      {/* <Banner/> */}
+      <Cards/>
+      <BlogCards/>
       {/* <SignUp/> */}
       {/* <SignIn/> */}
       <Footer />
