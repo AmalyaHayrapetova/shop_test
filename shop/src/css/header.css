@@ -1,3 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=KaushanScript);
+
+* {
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+}
+
+
 .CategoryTabsContainer{
     text-align: center;
     box-sizing: border-box;
@@ -98,7 +105,7 @@
 .CategoryTab{
     box-sizing: border-box;
     min-width: 0px;
-    font-size: 10px;
+    font-size: 0.9em;
     font-family: "Akzidenz-Grotesk BQ", sans-serif;
     font-weight: 500;
     line-height: 1.5;
