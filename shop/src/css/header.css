@@ -4,189 +4,81 @@
   font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
 }
 
-
-.CategoryTabsContainer{
-    text-align: center;
-    box-sizing: border-box;
-    min-width: 0px;
-    width: 100%;
-    position: relative;
-    margin: 0px;
-
+header {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.033em;
+  padding: 0.75rem;
+  background-color: #ffebd9;
 }
 
-.CategoryTabsNavigation{
-    box-sizing: border-box;
-    min-width: 0px;
-    width: 100%;
-    display: flex;
-    max-width: 1440px;
-    flex-wrap: nowrap;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 10;
-    margin: 0px auto;
-
+body {
+  margin: 0;
+  background-color: white;
 }
 
-.CategoriesMenu{
-    box-sizing: border-box;
-    min-width: 0px;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    height: 78px;
-    width: 100%;
-    margin: 0px;
-
+.Title {
+  padding-top: 10px;
+  padding-bottom: 0px;
+  /* padding-left: 0px; */
+  /* padding-right: 100px; */
+  /* margin-left: 30px; */
+  position: relative;
 }
 
-.CategoriesMain{
-    box-sizing: border-box;
-    min-width: 0px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: start;
-    justify-content: flex-start;
-    width: 45%;
-    margin: 0px;
-
+.Title .Tab {
+  margin-left: 10px;
 }
 
-.CategoryContainer {
-    box-sizing: border-box;
-    min-width: 0px;
-    display: flex;
-    opacity: 1;
-    pointer-events: initial;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    min-height: 22px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    position: relative;
-    transition: opacity 300ms ease 0s;
+.Tab header {
+  display: block;
 }
 
-.Catgory{
-
-    color: #111111;
-    text-align: center;
-    font-size: 16px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    z-index: 1;
-    text-decoration: none;
-
+.CategoryTabsContainer {
+  align-items: center;
 }
 
-.Category{
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    left: 10px;
-    right: 10px;
-    height: 1px;
-    margin: 0px auto;
+.MainHeader {
+  margin-left: 30px;
+  text-align: center;
 }
 
-.CategoryTab{
-    box-sizing: border-box;
-    min-width: 0px;
-    font-size: 0.9em;
-    font-family: "Akzidenz-Grotesk BQ", sans-serif;
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: 2px;
-    display: block;
-    width: 100%;
-    text-transform: uppercase;
-    white-space: nowrap;
-    margin: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-
-
+.Tab {
+  align-items: center;
 }
 
-.IconsContainer{
-    box-sizing: border-box;
-    min-width: 0px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: end;
-    justify-content: flex-end;
-    width: 45%;
-    margin: 0;
-    position: relative;
+ul {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding: 0;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  list-style-type: none;
+}
 
-  }
-  
-  .SearchContainer{
-    box-sizing: border-box;
-    min-width: 0px;
-    position: relative;
-    margin: 0px;
-  
-  }
-  
-  .SearchButton{
-    box-sizing: border-box;
-    min-width: 0px;
-    -webkit-appearance: none;
-    display: inline-block;
-    text-align: center;
-    line-height: inherit;
-    font-size: inherit;
-    color: #ffffff;
-    background-color: transparent;
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    text-transform: none;
-    margin: 0px 0px 4px;
-    border-radius: 4px;
-    padding: 0px;
-    border-width: 0px;
-    border-style: initial;
-    border-color: initial;
-    border-image: initial;
-    text-decoration: underline;
-  
-  }
-  
-  .OpenCart{
-    box-sizing: border-box;
-    min-width: 0px;
-    -webkit-appearance: none;
-    display: inline-block;
-    text-align: center;
-    line-height: inherit;
-    font-size: inherit;
-    background-color: transparent;
-    cursor: pointer;
-    color: #333333;
-    margin: 0px 0px 0px 20px;
-    border-radius: 4px;
-    padding: 0px;
-    border-width: 0px;
-    border-style: initial;
-    border-color: initial;
-    border-image: initial;
-    text-decoration: underline;
-  }
-  
+a {
+  text-decoration: none;
+  color: black;
+}
 
+ul li {
+  margin-left: 20px;
+  display: inline;
+}
+
+.CartIcon {
+  position: relative;
+}
+
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  fill: currentColor;
+}
