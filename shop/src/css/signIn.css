@@ -1,0 +1,74 @@
+.Main{
+    margin-top: 400px;
+    width: auto;
+    background-color: pink;
+
+}
+
+main.MuiContainer-root.MuiContainer-maxWidthXs{
+
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+.makeStyles-form-4{
+        margin-top: 50px;
+}
+
+.paper{
+
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2); */
+
+
+}
+
+
+.avatar{
+    margin: 1px;
+    background-color: palevioletred;
+
+}
+
+.form{
+    width: 100%;
+    margin-top:  3px;
+    margin-bottom: 150;
+
+}
+
+.submit{
+    margin: 3 0 2;
+    color: papayawhip;
+
+
+}
+
+.sign-in{
+    border-radius: 50px;
+    background-color: #dcedc1;
+    padding: 9px;
+    font-size: 18px;
+
+
+}
+
+
+.cancel{
+    border-radius: 50px;
+    background-color: #dcedc1;
+    padding: 9px;
+    font-size: 18px;
+
+}
+
+.account{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+
+}

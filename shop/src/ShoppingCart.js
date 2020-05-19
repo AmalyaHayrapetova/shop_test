@@ -1,11 +1,30 @@
 import React from "react";
-import "./css/shoppingCart.css"
+import "./css/shoppingCart.css";
 
 class ShoppingCart extends React.Component {
   render() {
     return (
       <div className="ShoppingCartContainer">
-        <div className="ShoppingCartMain">
+        <div className="ShoppingCartHeader">
+          <span className="DrawerTitle"> Cart </span>
+          <button className="CloseButton">
+            <svg className="icon" viewBox=" 0 0 16 14">
+              <path
+                d="M15 0L1 14m14 0L1 0"
+                stroke="currentColor"
+                fill="none"
+              ></path>{" "}
+            </svg>
+          </button>
+        </div>
+        <form className="CartContent" action="/cart" method="POST" novalidate>
+          <div className="CartMain" data-scrollable>
+            <p className="CartEmpty">Cart Is Empty </p>
+          </div>
+        </form>
+
+        {/* <div className="
+        ShoppingCartHeader">
           <aside data-camp="Cart" className="Aside">
             <header className="ShoppingCartHeader">
               <button
@@ -35,7 +54,7 @@ class ShoppingCart extends React.Component {
               </div>
             </section>
           </aside>
-        </div>
+        </div> */}
       </div>
     );
   }
