@@ -15,27 +15,27 @@ import ClothingCategoryLayout from "./ClothingCategoryLayout";
 import ShoesCategoryLayout from "./ShoesCategoryLayout";
 import AccessorizeCategoryLayout from "./AccessorizeCategoryLayout";
 import BridalCategoryLayout from "./BridalCategoryLayout";
-import Accessorize from "./Accessorize"
+import Accessorize from "./Accessorize";
 function Header() {
   const [isShown, setIsShown] = useState(false);
 
   return (
-    <header>
-      <div className="MainHeader">
-        <div className="Title">
-          <h1 className="title">Shopaholic.</h1>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
+    // <Router>
+      <header>
+        <div className="MainHeader">
+          <div className="Title">
+            <h1 className="title">Shopaholic.</h1>
+            <link
+              href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&display=swap"
+              rel="stylesheet"
+            />
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            />
+          </div>
         </div>
-      </div>
-      
-      <Router>
+
         <div className="CategoryTabsContainer">
           <nav className="CategoryTabsNavigation">
             <ul className="Navigation">
@@ -115,12 +115,12 @@ function Header() {
               </li>
             </ul>
           </nav>
-          <Route path="/cart" component={ShoppingCart} />
-          <Route path="/account" component={SignIn} />
-           <Route path="/accessorize" component={Accessorize} />
         </div>
-      </Router>
-    </header>
+        {/* <Route path="/cart" component={ShoppingCart} />
+        <Route path="/account" component={SignIn} />
+        <Route path="/accessorize" component={Accessorize} />
+        <Route path="/" /> */}
+      </header>
   );
 }
 
