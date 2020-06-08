@@ -17,13 +17,6 @@ body {
     width: 100%; */
 }
 
-.BannerMain:hover .BannerImage {
-    opacity: 0.3;
-}
-
-.BannerMain:hover .BannerImageMiddle {
-    opacity: 7;
-  }
   
   
 .BannerParent{

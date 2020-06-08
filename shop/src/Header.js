@@ -15,13 +15,15 @@ import ClothingCategoryLayout from "./ClothingCategoryLayout";
 import ShoesCategoryLayout from "./ShoesCategoryLayout";
 import AccessorizeCategoryLayout from "./AccessorizeCategoryLayout";
 import BridalCategoryLayout from "./BridalCategoryLayout";
-import Accessorize from "./Accessorize";
+
+
 function Header() {
   const [isShown, setIsShown] = useState(false);
 
   return (
-    // <Router>
-      <header>
+    <header>
+    
+    <div>
         <div className="MainHeader">
           <div className="Title">
             <h1 className="title">Shopaholic.</h1>
@@ -116,11 +118,9 @@ function Header() {
             </ul>
           </nav>
         </div>
-        {/* <Route path="/cart" component={ShoppingCart} />
-        <Route path="/account" component={SignIn} />
-        <Route path="/accessorize" component={Accessorize} />
-        <Route path="/" /> */}
-      </header>
+       </div>
+
+</header>
   );
 }
 
