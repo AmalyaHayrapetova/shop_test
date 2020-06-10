@@ -11,7 +11,7 @@ import CenteredTabs from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
-    marginTop: theme.spacing(10),
+    // marginTop: theme.spacing(10),
     position: "relative",
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
@@ -48,7 +48,6 @@ export default function MainFeaturedPost(props) {
 
   return (
     <div>
-      {/* <CenteredTabs /> */}
       <Paper
         className={classes.mainFeaturedPost}
         style={{ backgroundImage: `url(${image1})` }}

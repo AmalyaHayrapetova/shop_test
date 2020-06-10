@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,16 +7,18 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-import { Link } from "react-router-dom";
-import ReactHoverObserver from 'react-hover-observer';
+import { NavLink } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { withStyles } from "@material-ui/styles";
+import { connect } from "react-redux";
+import Popper from "@material-ui/core/Popper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     margin: theme.spacing(0),
-    position:"relative",
+    position: "relative",
     height: "60px",
   },
   tabs: {
@@ -30,118 +32,100 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     height: "70px",
   },
-  link: {
-    color: "inherit",
-    textDecoration: "inherit",
-    padding: theme.spacing(2),
-  },
-  tabpanel: {
-    textAlign: "center",
-  },
 }));
 
-function TabPanel(props) {
-  const { children, value, index, isHiden, ...other } = props;
+const subItems = ["Clothings", "Shoes", "Accessorises", "Face&Body"];
+const items = [
+  { pathName: "/men", label: "MEN" },
+  { pathName: "/women", label: "WOMEN" },
+  { pathName: "/boy", label: "BOY" },
+  { pathName: "/girl", label: "GIRL" },
+  { pathName: "/bridal", label: "BRIDAL" },
+  { pathName: "/stores", label: "STORES" },
+];
 
-  return (
-    <div
-      role="tabpanel"
-      id={`nav-tabpanel-${index}`}
-      aria-labelledby={`nav-tab-${index}`}
-      {...other}
-    >
-      {isHiden === true && (
-        <Box p={3} bgcolor="#f5f5f5">
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `nav-tab-${index}`,
-    "aria-controls": `nav-tabpanel-${index}`,
-  };
-}
-
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
-
-export default function CenterTabs() {
-  const classes = useStyles();
-  const [value, setValue, open] = React.useState(0);
-     var isHovering = false;
-  const handleChange = (event, newValue, open) => {
-    setValue(newValue);
+class CenterTabs extends Component {
+  state = {
+    value: 0,
+    open: false,
+    anchorEl: null,
   };
 
-  const onMouseOver = () =>{
-      isHovering=true;
+  handleMenuOpen = (index, event) => {
+    const { currentTarget } = event;
+    this.setState({
+      open: true,
+      anchorEl: currentTarget,
+      value: index,
+    });
+  };
+
+  handleMenuClose = () => {
+    this.setState({
+      open: false,
+      anchorEl: null,
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div
+        className={classes.root}
+        onMouseLeave={this.handleMenuClose.bind(this)}
+      >
+        <CssBaseline />
+        <AppBar position="static">
+          <Paper position="static" className={classes.paper}>
+            <Tabs
+              centered
+              //value={value}
+              value={this.state.value}
+              aria-label="nav tabs example"
+              className={classes.tabs}
+            >
+              {items.map((item, index) => (
+                <NavLink
+                  to={item.pathName}
+                  style={{
+                    textDecoration: "none",
+                    color: "rgb(32, 32, 34)",
+                  }}
+                >
+                  <Tab
+                    key={index}
+                    onMouseEnter={this.handleMenuOpen.bind(this, index)}
+                    data-key={index}
+                    classes={{ root: classes.tabItem }}
+                    label={item.label}
+                    aria-owns={this.state.open ? "menu-list-grow" : undefined}
+                    aria-haspopup={"true"}
+                  />
+                </NavLink>
+              ))}{" "}
+            </Tabs>
+            <Popper
+              anchorEl={this.state.anchorEl}
+              id="menu-list-grow"
+              placement="bottom"
+              open={this.state.open}
+            >
+              <div role="tabpanel">
+                <Paper position="static">
+                  {subItems.map((item, index) => (
+                    <Box p={2} display="inline-block">
+                      <Typography>{item}</Typography>
+                    </Box>
+                  ))}
+                </Paper>
+              </div>
+            </Popper>
+          </Paper>
+        </AppBar>
+      </div>
+    );
   }
-
-  return (
-    <div className={classes.root}>
-    <CssBaseline/>
-      <Paper position="static" className={classes.paper}>
-        <Tabs
-          centered
-          value={value}
-          onChange={handleChange}
-          aria-label="nav tabs example"
-          className={classes.tabs}
-        //   onMouseOver={onMouseOver}
-        >
-          <LinkTab label="MEN" {...a11yProps(0)} />
-          <LinkTab label="WOMEN" {...a11yProps(1)} />
-          <LinkTab label="BOY" {...a11yProps(2)} />
-          <LinkTab label="GIRL" {...a11yProps(3)} />
-          <LinkTab label="BLOG" {...a11yProps(4)} />
-        </Tabs>
-      </Paper>
-        <TabPanel value={value} index={0} className={classes.tabpanel}>
-          <Link to="/women/clothing" className={classes.link}>
-            Clothings
-          </Link>
-          <Link to="/women/shoes" className={classes.link}>
-            Shoes
-          </Link>
-          <Link to="/women/accessorises" className={classes.link}>
-            Accessorises
-          </Link>
-          <Link to="/women/face-and-body" className={classes.link}>
-            Face&Body
-          </Link>
-          <Link to="/women/outlet" className={classes.link}>
-            Outlet
-          </Link>
-          <Link to="/women/outlet" className={classes.link}>
-            Brands
-          </Link>
-        </TabPanel>
-      
-      <TabPanel value={value} index={1}>
-        Page Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Page Three
-      </TabPanel>
-          </div>
-  );
 }
+
+const MainCategories = connect()(CenterTabs);
+export default withStyles(useStyles)(MainCategories);

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "@material-ui/core/styles";
 //import NavBar from "./component/NavBar";
-import CenteredTabs from "./component/Menu";
+import MainCategories from "./component/Menu";
 import ProductList from "./component/ProductList";
 import CartDialog from "./component/ShoppingCart/Cart";
 import Default from "./component/Default";
@@ -21,7 +21,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className="app">
           <Header />
-          <CenteredTabs />
+          <MainCategories />
           <div className="app-body">
             {/* <CategoryFilter/> */}
             <div className="content">

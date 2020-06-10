@@ -8,7 +8,7 @@ class Api {
   getItemUsingID(id) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        let res = products.filter(x => x.id === parseInt(id, 10));
+        let res = products.filter(x => x.id === parseInt(id));
         resolve(res.length === 0 ? null : res[0]);
       }, 500);
     });

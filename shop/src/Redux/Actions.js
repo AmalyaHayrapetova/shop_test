@@ -35,3 +35,8 @@ export const logout = () => ({
 export const setAddressInfo = () => ({
   type: CONSTANTS.SET_ADDRESS_INFO,
 });
+
+export const showCategory = () =>({
+  type:CONSTANTS.SHOW_CATEGORY,
+
+})

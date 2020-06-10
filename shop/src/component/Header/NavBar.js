@@ -113,3 +113,203 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+/*
+export default function NavBar() {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const menuId = "primary-search-account-menu";
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Orders</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Shipping Addresses</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+    </Menu>
+  );
+
+  const mobileMenuId = "primary-search-account-menu-mobile";
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton aria-label="show 4 items" color="inherit">
+          <Badge badgeContent={4} color="secondary">
+            <ShoppingCartIcon />
+          </Badge>
+        </IconButton>
+        <p>Messages</p>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+    </Menu>
+  );
+
+  return (
+    <div className={classes.grow}>
+      <CssBaseline />
+      <AppBar position="static" className={classes.appbar}>
+        <Toolbar>
+          <Link to="/" className={classes.link}>
+            <Typography className={classes.title} variant="h6" noWrap>
+              Shopaholic
+            </Typography>
+          </Link>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search products…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </div>
+          <div className={classes.grow} />
+          <div className="right-part">
+            {!this.props.loggedInUser ? (
+              <Button
+                variant="outlined"
+                style={{ marginRight: 20 }}
+                color="primary"
+                onClick={() => {
+                  this.props.history.push("/login");
+                }}
+              >
+                Log in
+              </Button>
+            ) : (
+              <Avatar
+                onClick={(event) => {
+                  this.setState({ anchorEl: event.currentTarget });
+                }}
+                style={{ backgroundColor: "#3f51b5", marginRight: 10 }}
+              >
+                <Person />
+              </Avatar>
+            )}
+            <IconButton
+              aria-label="Cart"
+              onClick={() => {
+                this.props.dispatch(showCartDlg(true));
+              }}
+            >
+              <Badge badgeContent={this.props.nrOfItemsInCard} color="primary">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={() => {
+                this.setState({ anchorEl: null });
+              }}
+            >
+              <MenuItem
+                onClick={() => {
+                  this.setState({ anchorEl: null });
+                  this.props.history.push("/order");
+                }}
+              >
+                Checkout page
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  Auth.signout(() => {
+                    this.props.dispatch(logout());
+                    this.props.history.push("/");
+                  });
+                  this.setState({ anchorEl: null });
+                }}
+              >
+                Logout
+              </MenuItem>
+            </Menu>
+          </div>
+
+          {/* <div className={classes.sectionDesktop}>
+            <Link to="/shopping-cart" className={classes.link}>
+               <IconButton aria-label="show 4 items in cart" color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
+          <div className={classes.sectionMobile}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </div> 
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
+    </div>
+  );
+}
+*/
