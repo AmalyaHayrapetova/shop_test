@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { connect } from "react-redux";
-import { addItemInCart } from "../../Redux/Actions";
+import { addItemInFavourite } from "../../Redux/Actions";
 import { withRouter } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -11,6 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 class ConnectedItem extends Component {
   render() {
@@ -25,7 +26,7 @@ class ConnectedItem extends Component {
         >
           <CardMedia
             style={{ height: 140 }}
-            image={this.props.item.imageUrls[0]}
+            image={this.props.item.img}
           />
           <CardContent style={{ height: 50 }}>
             <div
@@ -58,19 +59,19 @@ class ConnectedItem extends Component {
             {" "}
             Details
           </Button>
-          <Tooltip title="Add to cart">
+          <Tooltip title="Add to Favourite">
             <IconButton
               size="small"
               onClick={e => {
                 e.stopPropagation();
                 this.props.dispatch(
-                  addItemInCart({ ...this.props.item, quantity: 1 })
+                  addItemInFavourite({ ...this.props.item, quantity: 1 })
                 );
               }}
               color="primary"
-              aria-label="Add to shopping cart"
+              aria-label="Add to favourite"
             >
-              <AddShoppingCartIcon size="small" />
+              <FavoriteIcon size="small" />
             </IconButton>
           </Tooltip>
         </CardActions>

@@ -8,3 +8,4 @@ export const SET_LOGGED_IN_USER = "SET_LOGGED_IN_USER";
 export const LOGOUT = "LOGOUT";
 export const SET_ADDRESS_INFO = "SET_ADDRESS_INFO";
 export const SHOW_CATEGORY = "SHOW_CATEGORY";
+export const ADD_ITEM_TO_FAVOURITE = "ADD_ITEM_TO_FAVOURITE";

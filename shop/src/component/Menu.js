@@ -41,7 +41,6 @@ const items = [
   { pathName: "/boy", label: "BOY" },
   { pathName: "/girl", label: "GIRL" },
   { pathName: "/bridal", label: "BRIDAL" },
-  { pathName: "/stores", label: "STORES" },
 ];
 
 class CenterTabs extends Component {
@@ -79,7 +78,6 @@ class CenterTabs extends Component {
           <Paper position="static" className={classes.paper}>
             <Tabs
               centered
-              //value={value}
               value={this.state.value}
               aria-label="nav tabs example"
               className={classes.tabs}
@@ -113,7 +111,7 @@ class CenterTabs extends Component {
               <div role="tabpanel">
                 <Paper position="static">
                   {subItems.map((item, index) => (
-                    <Box p={2} display="inline-block">
+                    <Box p={2}  key={index} display="inline-block">
                       <Typography>{item}</Typography>
                     </Box>
                   ))}

@@ -182,6 +182,7 @@ const products = [
     inCart: false,
     category: "clothes",
     store: "Zara",
+    rating: 5,
     sizes: [
       {
         size: "S",
@@ -200,22 +201,49 @@ const products = [
         count: 0,
       },
     ],
+    colors: ["red", "blue", "orange", "pink"],
   },
   {
     id: 16,
     name: "High Destructed Rise Cheeky Straight Jeans",
-    description: "Dark Indigo",
+    description: ["Spring is here", "Cotton", "Washing"],
     gender: "women",
     type: "jeans",
-    img: "https://www1.assets-gap.com/webcontent/0018/476/769/cn18476769.jpg",
+       imageUrls: [
+      "https://www1.assets-gap.com/webcontent/0018/423/887/cn18423887.jpg",
+      "https://www1.assets-gap.com/webcontent/0018/423/887/cn18423887.jpg",
+      "https://www1.assets-gap.com/webcontent/0018/423/887/cn18423887.jpg",
+      "https://www1.assets-gap.com/webcontent/0018/423/887/cn18423887.jpg",
+    ],
     inCart: false,
     category: "clothes",
     store: "Zara",
+    rating: 5,
+    sizes: [
+      {
+        size: "S",
+        count: 2,
+      },
+      {
+        size: "M",
+        count: 5,
+      },
+      {
+        size: "L",
+        count: 4,
+      },
+      {
+        size: "XL",
+        count: 0,
+      },
+    ],
+    colors: ["red", "blue", "orange", "pink"],
+
   },
   {
     id: 17,
     name: "Kids Leopard Sunglasses",
-    description: "Just use it",
+    description: ["Spring is here", "Cotton", "Washing"],
     price: 13.99,
     gender: "boy",
     type: "sunglass",
@@ -393,6 +421,5 @@ const products = [
   },
 ];
 
-
-export default products ;
+export default products;
 //export default products;

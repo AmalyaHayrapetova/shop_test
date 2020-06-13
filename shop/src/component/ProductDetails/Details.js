@@ -22,7 +22,6 @@ import { withStyles } from "@material-ui/styles";
 import Menu from "../CategoryMenu/CategoryFilter";
 import HoverRating from "../Rating.js";
 
-
 const useStyles = (theme) => ({
   formControl: {
     marginTop: 100,
@@ -47,6 +46,7 @@ class ConnectedDetails extends Component {
       size: null,
       errorMessage: "",
       count: 0,
+      color: null,
     };
   }
 
@@ -64,7 +64,7 @@ class ConnectedDetails extends Component {
       this.setState({
         item,
         quantity: 1,
-        //relatedItems: relatedItems.data.filter(x => x.id !== item.id),
+        relatedItems: relatedItems.data.filter(x => x.id !== item.id),
         itemLoading: false,
       });
     }
@@ -86,7 +86,7 @@ class ConnectedDetails extends Component {
     this.isCompMounted = false;
   }
 
-//fixme
+  //fixme
   checkIsSizeAvailable(sizeQuantity, quantity) {
     return sizeQuantity >= quantity;
   }
@@ -108,17 +108,17 @@ class ConnectedDetails extends Component {
           <Menu />
         </div>
         <div style={{ float: "right", marginLeft: "200px" }}>
-        <div style={{display:"flex"}}>
-          <div
-            style={{
-              marginBottom: 20,
-              marginTop: 10,
-              fontSize: 22,
-            }}
-          >
-            {this.state.item.name}
-          </div>
-          <HoverRating />
+          <div style={{ display: "flex" }}>
+            <div
+              style={{
+                marginBottom: 20,
+                marginTop: 10,
+                fontSize: 22,
+              }}
+            >
+              {this.state.item.name}
+            </div>
+            <HoverRating itemValue={this.state.item.rating} />
           </div>
           <div style={{ display: "flex" }}>
             <img
@@ -204,7 +204,31 @@ class ConnectedDetails extends Component {
                   <FormHelperText>Required</FormHelperText>
                 </FormControl>
               </div>
-
+              <div
+                className="flex-row"
+                style={{
+                  border: "1px solid rgb(0, 0, 0, 0.23)",
+                  padding: "18.5px 14px",
+                  borderRadius: 4,
+                  marginTop: 20,
+                  overflowX: "hidden",
+                  overflowY: "auto",
+                }}
+              >
+                {this.state.item.colors.map((color, index) => {
+                  return (
+                    <Button
+                      style={{
+                        borderRadius: "50%",
+                        backgroundColor:  "red",
+                      }}
+                      onClick={(e) => {
+                        this.setState({ color: color });
+                      }}
+                    ></Button>
+                  );
+                })}
+              </div>
               <TextField
                 type="number"
                 value={this.state.quantity}

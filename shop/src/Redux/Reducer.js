@@ -7,6 +7,7 @@ const initialState = {
   showMenu: true,
   checkedOutItems: [],
   loggedInUser: null,
+  favouriteItems: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -14,11 +15,15 @@ const rootReducer = (state = initialState, action) => {
     case CONSTANTS.ADD_ITEM_IN_CART: {
       var index = state.cartItems.findIndex((x) => x.id === action.payload.id);
 
-console.log("Cart item size ", state.cartItems[index]);
-console.log("State item size ", state.size);
+      console.log("Cart item size ", state.cartItems[index]);
+      console.log("State item size ", state.size);
 
       // Is the item user wants to add already in the cart?
-      if (index !== -1 && (state.cartItems[index].size === state.size && state.cartItems[index].quantity !== state.quantity)) {
+      if (
+        index !== -1 &&
+        state.cartItems[index].size === state.size &&
+        state.cartItems[index].quantity !== state.quantity
+      ) {
         // Yes, update the quantity.
         let cloneCartItems = [...state.cartItems];
         cloneCartItems[index] = {
@@ -66,6 +71,14 @@ console.log("State item size ", state.size);
       // If we couldn't find such item, do nothing.
       return state;
     }
+    case CONSTANTS.ADD_ITEM_TO_FAVOURITE: {
+      
+      return {
+        ...state,
+        favouriteItems: state.favouriteItems.concat(action.payload)
+      };
+    }
+
     default:
       return state;
   }

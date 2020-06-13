@@ -23,12 +23,14 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Input from '@material-ui/core/Input';
+import Input from "@material-ui/core/Input";
 import CancelIcon from "@material-ui/icons/Cancel";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const mapStateToProps = (state) => {
   return {
     nrOfItemsInCard: state.cartItems.length,
+    nrOfItemsInFav: state.favouriteItems.length,
     loggedInUser: state.loggedInUser,
   };
 };
@@ -88,32 +90,6 @@ class ConnectedHeader extends Component {
                 }}
               />
 
-              {/* <TextField
-                id="standard-search"
-                label="Search products..."
-                type="search"
-                value={this.state.searchTerm}
-                onChange={(e) => {
-                  this.setState({ searchTerm: e.target.value });
-                }}
-                style={{ marginLeft: 30, width: 250, marginBottom: 15 }}
-              /> */}
-
-              {/* <Select
-              style={{ maxWidth: 200, marginLeft: 20 }}
-              value={this.state.categoryFilterValue}
-              MenuProps={{
-                style: {
-                  maxHeight: 500
-                }
-              }}
-              onChange={e => {
-                this.setState({ categoryFilterValue: e.target.value });
-              }}
-            >
-              {categoryOptions}
-            </Select> */}
-
               <SearchIcon
                 type="button"
                 style={{ marginLeft: 20 }}
@@ -134,7 +110,7 @@ class ConnectedHeader extends Component {
               {!this.props.loggedInUser ? (
                 <Button
                   variant="outlined"
-                  style={{ marginRight: 20 }}
+                  style={{ marginRight: 20, padding: "5px 15px" }}
                   color="primary"
                   onClick={() => {
                     this.props.history.push("/sign-in");
@@ -152,6 +128,16 @@ class ConnectedHeader extends Component {
                   <Person />
                 </Avatar>
               )}
+              <IconButton
+                aria-label="Favourite"
+                onClick={() => {
+                  this.props.dispatch(showCartDlg(true));
+                }}
+              >
+                <Badge badgeContent={this.props.nrOfItemsInFav} color="primary">
+                  <FavoriteIcon />
+                </Badge>
+              </IconButton>
               <IconButton
                 aria-label="Cart"
                 onClick={() => {

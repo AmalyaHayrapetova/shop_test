@@ -39,4 +39,9 @@ export const setAddressInfo = () => ({
 export const showCategory = () =>({
   type:CONSTANTS.SHOW_CATEGORY,
 
+});
+
+export const addItemInFavourite = item => ({
+  type: CONSTANTS.ADD_ITEM_TO_FAVOURITE,
+  payload: item
 })
