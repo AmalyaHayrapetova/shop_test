@@ -4,42 +4,32 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Titles from "./Titles";
 import storeProducts from "../data/data.js";
-import { withStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/styles";
+import PropTypes from "prop-types";
+import Menu from "./CategoryMenu/CategoryFilter";
 
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
     marginTop: 50,
-    display:"inline-block",
-
+    display: "inline-block",
   },
-
 });
 
- class ProductList extends Component {
-  state = {
-    products: storeProducts,
-  };
-
+class ProductList extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <React.Fragment>
+      <div className={classes.root}>
+        <Menu />
         <CssBaseline />
-
-        <Container fixed display="inline">
-          <Titles gender="Women" subCategory="Clothing" />
-          <div className={classes.root}>
-            <Product/>
-            {/* <ProductConsumer>
+        <Product />
+        {/* <ProductConsumer>
             {(value) => {
                 return <Titles gender={value} />;
             }}
           </ProductConsumer> */}
-          </div>
-        </Container>
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -48,5 +38,4 @@ ProductList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-
-export default  withStyles(styles)(ProductList);
+export default withStyles(styles)(ProductList);

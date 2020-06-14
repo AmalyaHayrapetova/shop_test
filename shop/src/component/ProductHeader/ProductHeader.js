@@ -23,6 +23,7 @@ class ProductsHeader extends Component {
     let sortValue = parsedQS.sortValue || "lh";
     let keyword = parsedQS.term;
     let category = parsedQS.category;
+    let gender = parsedQS.gender;
 
     let subtitle = (
       <React.Fragment>
@@ -50,8 +51,8 @@ class ProductsHeader extends Component {
     return (
       <div>
         <div style={{ padding: 10, display: "flex", alignItems: "center" }}>
-          <div style={{ flex: 1, fontSize: 24 }}>
-            <div>{category ? category : "Popular Products"}</div>
+          <div style={{ flex: 2, fontSize: 24 }}>
+            <div>{ category ? category.toUpperCase() : "All Products"}</div>
             {subtitle}
           </div>
         </div>

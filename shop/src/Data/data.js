@@ -202,6 +202,7 @@ const products = [
       },
     ],
     colors: ["red", "blue", "orange", "pink"],
+        popular: true,
   },
   {
     id: 16,
@@ -216,7 +217,7 @@ const products = [
       "https://www1.assets-gap.com/webcontent/0018/423/887/cn18423887.jpg",
     ],
     inCart: false,
-    category: "clothes",
+    category: "Clothes",
     store: "Zara",
     rating: 5,
     sizes: [
@@ -274,7 +275,8 @@ const products = [
     type: "hat",
     img: "https://www1.assets-gap.com/webcontent/0016/309/754/cn16309754.jpg",
     inCart: false,
-    category: "accessories",
+    category: "Accessorise",
+    subcategory:"Hats",
     store: "Zara",
   },
   {
@@ -308,7 +310,7 @@ const products = [
     description: "Created in nylon, our quilted cross-body bag",
     price: 45.99,
     gender: "women",
-    type: "bag",
+    subcategory: "Bags",
     img:
       "https://media.monsoon.co.uk/medias/sys_master/9440081149982.jpg?buildNumber=491a8746e3a11586a76a5fed2f391635eecf347a",
     inCart: false,
@@ -321,7 +323,7 @@ const products = [
     description: "Make your entrance with our Lily envelope clutch bag",
     price: 45.99,
     gender: "women",
-    type: "bag",
+    subcategory: "Bags",
     img:
       "https://media.monsoon.co.uk/medias/sys_master/9440839663646.jpg?buildNumber=491a8746e3a11586a76a5fed2f391635eecf347a",
     inCart: false,
@@ -334,7 +336,7 @@ const products = [
     description: "Make your entrance with our Lily envelope clutch bag",
     price: 45.99,
     gender: "women",
-    type: "bag",
+    subcategory: "Bags",
     img:
       "https://media.monsoon.co.uk/medias/sys_master/9440839663646.jpg?buildNumber=491a8746e3a11586a76a5fed2f391635eecf347a",
     inCart: false,

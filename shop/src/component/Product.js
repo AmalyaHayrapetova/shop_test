@@ -11,9 +11,11 @@ import queryString from "query-string";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Item from "./Item/Item";
 import Paging from "./paging/Paging";
-import ProductsHeader from "./ProductHeader/ProductHeader"
+import ProductsHeader from "./ProductHeader/ProductHeader";
+import Menu from "./CategoryMenu/CategoryFilter";
+import Api from "../Api";
 
-import Api from "../Api"
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -62,8 +64,10 @@ class Product extends Component {
 
     // Parse the query string
     let qsAsObject = queryString.parse(this.props.location.search);
-
-    let results = await Api.searchItems(qsAsObject);
+    let gender = qsAsObject.gender;
+    let category = qsAsObject.category;
+    let subCategory = qsAsObject.subcategory;
+    let results = await Api.searchItems(category, gender, subCategory);
 
     this.setState({
       items: results.data,
@@ -79,7 +83,7 @@ class Product extends Component {
   updateQueryString(newValues) {
     let currentQS = queryString.parse(this.props.location.search);
     let newQS = { ...currentQS, ...newValues };
-    this.props.history.push("/?" + queryString.stringify(newQS));
+    this.props.history.push("product-list/?" + queryString.stringify(newQS));
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -108,6 +112,10 @@ class Product extends Component {
     }
 
     return (
+      <div style={{display:"flex"}}>
+        <div style={{marginRight:100}}>
+          <Menu />
+        </div>
       <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
         <ProductsHeader
           parsedQS={parsedQS}
@@ -127,51 +135,11 @@ class Product extends Component {
           totalItemsCount={this.state.totalItemsCount}
         />
       </div>
+      </div>
     );
   }
 }
 
 export default Product;
 
-/*
-    <div className={classes.root}>
-      <Grid
-        container
-        spacing={6}
-        direction="row"
-        justify="space-around"
-      >
-        {Products.map((product) => {
-          //   if (product.category === cat && product.gender === gend)
-          return (
-            <Paper className={classes.main}>
-              <Grid item>
-                <ButtonBase className={classes.image}>
-                  <img
-                    className={classes.img}
-                    alt="complex"
-                    src={product.img}
-                  />
-                </ButtonBase>
-                <Grid item xs={12} sm container>
-                  <Grid item xs container direction="column" spacing={6}>
-                    <Grid item xs>
-                      <Typography variant="body2" gutterBottom>
-                        {product.name}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {product.store}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="subtitle1">{product.price}</Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Paper>
-          );
-        })}
-      </Grid>
-    </div>
-    */
+

@@ -67,24 +67,24 @@ const categories = [
   {
     accessorise: [
       {
-        name: "Jumpers & Cardigans",
+        name: "Hats",
         icon: "Test",
       },
       {
-        name: "Tops",
+        name: "Rings",
         icon: "group",
       },
       {
-        name: "Shirts",
+        name: "Braslets",
         icon: "group",
       },
       {
-        name: "Dresses",
+        name: "Bags",
         icon: "group",
         id: 1,
       },
       {
-        name: "Tops",
+        name: "Glasses",
         icon: "computer",
         id: 1,
       },
@@ -101,7 +101,7 @@ const categoryList = [
       return {
         name: x.name,
         id: i,
-        url: "/?category=" + x.name,
+        url: "?category=clothes"+"&subcategory="+x.name,
       };
     }),
   },
@@ -113,7 +113,7 @@ const categoryList = [
       return {
         name: x.name,
         id: x.id,
-        url: "/?category=" + x.name,
+        url: "?category=shoes"+"&subcategory="+x.name,
       };
     }),
   },
@@ -124,7 +124,7 @@ const categoryList = [
       return {
         name: x.name,
         id: x.id,
-        url: "/?category=" + x.name,
+        url: "?category=accessories"+"&subcategory="+x.name,
       };
     }),
   },

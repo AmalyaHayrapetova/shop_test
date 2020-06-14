@@ -57,6 +57,7 @@ class ConnectedDetails extends Component {
 
     let relatedItems = await Api.searchItems({
       category: item.category,
+      gender:item.gender
     });
 
     // Make sure this component is still mounted before we set state..

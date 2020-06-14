@@ -36,11 +36,11 @@ const useStyles = makeStyles((theme) => ({
 
 const subItems = ["Clothings", "Shoes", "Accessorises", "Face&Body"];
 const items = [
-  { pathName: "/men", label: "MEN" },
-  { pathName: "/women", label: "WOMEN" },
-  { pathName: "/boy", label: "BOY" },
-  { pathName: "/girl", label: "GIRL" },
-  { pathName: "/bridal", label: "BRIDAL" },
+  { pathName: "/product-list/gender=men", label: "MEN" },
+  { pathName: "/product-list/gender=women", label: "WOMEN" },
+  { pathName: "/product-list/gender=boy", label: "BOY" },
+  { pathName: "/product-list/gender=girl", label: "GIRL" },
+  { pathName: "/stores", label: "STORES" },
 ];
 
 class CenterTabs extends Component {

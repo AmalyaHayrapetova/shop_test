@@ -4,6 +4,7 @@ import "@material-ui/core/styles";
 //import NavBar from "./component/NavBar";
 import MainCategories from "./component/Menu";
 import ProductList from "./component/ProductList";
+import Product from "./component/Product";
 import CartDialog from "./component/ShoppingCart/Cart";
 import Default from "./component/Default";
 import SignIn from "./component/SignIn/SignIn";
@@ -28,7 +29,7 @@ class App extends React.Component {
               <CartDialog />
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/product-list" component={ProductList} />
+                <Route path="/product-list" component={Product} />
                 {/* <Route path="/product-details" component={Details} /> */}
                 <Route path="/sign-in" component={SignIn} />
                 <Route path="/sign-up" component={SignUp} />

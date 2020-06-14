@@ -1,4 +1,4 @@
-import  products  from "./data/data";
+import products from "./data/data";
 
 ///
 //
@@ -8,7 +8,7 @@ class Api {
   getItemUsingID(id) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        let res = products.filter(x => x.id === parseInt(id));
+        let res = products.filter((x) => x.id === parseInt(id));
         resolve(res.length === 0 ? null : res[0]);
       }, 500);
     });
@@ -28,38 +28,37 @@ class Api {
     return items;
   }
 
-  searchItems({
-    category = "popular",
+  searchItems(
+    category,
+    gender,
+    subcategory,
     term = "",
     sortValue = "lh",
-    itemsPerPage = 10,
+    itemsPerPage = 50,
     usePriceFilter = "false",
     minPrice = 0,
     maxPrice = 1000,
     page = 1
-  }) {
-    
-    // Turn this into a boolean
+  ) {
     usePriceFilter = usePriceFilter === "true" && true;
-    
+    console.log("gender",gender);
+    console.log("category",category);
+    console.log("subCategory",subcategory);
+
     return new Promise((resolve, reject) => {
-
       setTimeout(() => {
-
-        let data = products.filter(item => {
+        let data = products.filter((item) => {
           if (
             usePriceFilter &&
             (item.price < minPrice || item.price > maxPrice)
           ) {
             return false;
           }
-
-          if (category === "popular") {
-            return item.popular;
-          }
-
           if (category !== "All categories" && category !== item.category)
             return false;
+          if (subcategory !== undefined && subcategory !== item.subcategory)
+            return false;
+          if (gender !== item.gender && gender !== undefined) return false;
 
           if (term && !item.name.toLowerCase().includes(term.toLowerCase()))
             return false;
