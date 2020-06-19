@@ -71,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 */
 
-
 class SignIn extends Component {
   //const classes = useStyles();
   //const [isClose, setClose] = useState(false);
@@ -98,9 +97,10 @@ class SignIn extends Component {
           }}
         >
           <Avatar
-            style={{ 
-                  margin: 10,
-              backgroundColor: "#F57170" }}
+            style={{
+              margin: 10,
+              backgroundColor: "#F57170",
+            }}
             // className={classes.avatar}
           >
             <LockOutlinedIcon />

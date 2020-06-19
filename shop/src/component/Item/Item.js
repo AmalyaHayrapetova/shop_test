@@ -20,9 +20,6 @@ class ConnectedItem extends Component {
         style={{ width: 250, height: 400, margin: 30, display: "inline-block" }}
       >
         <CardActionArea
-          onClick={() => {
-            this.props.history.push("/details/" + this.props.item.id);
-          }}
         >
           <CardMedia
             style={{ height: 250 }}
@@ -44,7 +41,7 @@ class ConnectedItem extends Component {
             </div>
             <div style={{ margin: 10 }}>Price: {this.props.item.price} $</div>
             <div style={{ color: "#1a9349", fontWeight: "bold", margin: 10 }}>
-              {this.props.item.popular && "Popular"}
+              {this.props.item.store}
             </div>
           </CardContent>
         </CardActionArea>
@@ -53,7 +50,7 @@ class ConnectedItem extends Component {
             display: "flex",
             alignItems: "center",
             height: 30,
-            marginTop: 30,
+            marginTop: 50,
           }}
         >
           <Tooltip title="Add to Favourite">

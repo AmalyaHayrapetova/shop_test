@@ -11,8 +11,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { withRouter, Redirect, Link } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 // import "./css/signIn.css"
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -69,14 +73,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-class SignUp extends Component{
+class Register extends Component{
 
 
   render(){
     const { classes } = this.props;
 
   return (
-    <Container component="main" maxWidth="xs" className = {classes.main}>
+    <Container maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -199,4 +203,10 @@ class SignUp extends Component{
 
 }
 }
-export default SignUp;
+
+Register.propTypes = {
+  post: PropTypes.object,
+};
+
+const SignUp = withRouter(connect()(Register));
+export default withStyles(useStyles)(SignUp);

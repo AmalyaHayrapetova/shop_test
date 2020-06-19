@@ -201,8 +201,20 @@ const products = [
         count: 0,
       },
     ],
-    colors: ["red", "blue", "orange", "pink"],
-        popular: true,
+    colors: [
+      {
+        colorName:"red",
+        colorImage:"../images/red_15.png"
+      },
+        {
+        colorName:"blue",
+        colorImage:"../../images/red_15.png"
+      },  
+      {
+        colorName:"green",
+        colorImage:"../../images/25041.jpg"
+      }
+      ]
   },
   {
     id: 16,
@@ -275,7 +287,7 @@ const products = [
     type: "hat",
     img: "https://www1.assets-gap.com/webcontent/0016/309/754/cn16309754.jpg",
     inCart: false,
-    category: "Accessorise",
+    category: "accessories",
     subcategory:"Hats",
     store: "Zara",
   },
