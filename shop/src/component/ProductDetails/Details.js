@@ -7,21 +7,17 @@ import Api from "../../Api";
 import Item from "../Item/Item";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { withStyles } from "@material-ui/styles";
 import HoverRating from "../Rating.js";
-import image1 from "../../images/25041.jpg";
-import Image from "material-ui-image";
 
 const useStyles = (theme) => ({
   formControl: {
@@ -128,7 +124,7 @@ class ConnectedDetails extends Component {
           <div>
             <img
               src={this.state.item.imageUrls[0]}
-              alt=""
+              alt={this.state.item.name}
               width={500}
               height={500}
               style={{
@@ -231,6 +227,7 @@ class ConnectedDetails extends Component {
                       width: 100,
                       height: 100,
                     }}
+                    alt={this.state.item.name}
                     onClick={(e) => {
                       this.setState({ color: color });
                     }}
@@ -274,7 +271,7 @@ class ConnectedDetails extends Component {
             return (
               <img
                 src={image}
-                alt=""
+                alt="image_here"
                 width={70}
                 height={70}
                 style={{

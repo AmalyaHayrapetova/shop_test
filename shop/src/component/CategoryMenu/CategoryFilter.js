@@ -1,167 +1,167 @@
-import React, { Component, Fragment } from "react";
-import { NavLink } from "react-router-dom";
-import queryString from "query-string";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import React, { Component, Fragment } from 'react'
+import { NavLink } from 'react-router-dom'
+import queryString from 'query-string'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 //import categoryList from "../../data/data";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import Icon from "@material-ui/core/Icon";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from '@material-ui/icons/ExpandLess'
+import ExpandMore from '@material-ui/icons/ExpandMore'
+import Icon from '@material-ui/core/Icon'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import Collapse from '@material-ui/core/Collapse'
 
-import Typography from "@material-ui/core/Typography";
+import Typography from '@material-ui/core/Typography'
 
 const categories = [
   {
     clothing: [
       {
-        name: "Jumpers & Cardigans",
-        icon: "Test",
+        name: 'Jumpers & Cardigans',
+        icon: 'Test'
       },
       {
-        name: "Jeans",
-        icon: "Test",
+        name: 'Jeans',
+        icon: 'Test'
       },
       {
-        name: "Shirts",
-        icon: "Test",
+        name: 'Shirts',
+        icon: 'Test'
       },
       {
-        name: "Dresses",
-        icon: "Test",
+        name: 'Dresses',
+        icon: 'Test'
       },
       {
-        name: "Tops",
-        icon: "Test",
-      },
-    ],
+        name: 'Tops',
+        icon: 'Test'
+      }
+    ]
   },
   {
     shoes: [
       {
-        name: "Jumpers & Cardigans",
-        icon: "Test",
+        name: 'Jumpers & Cardigans',
+        icon: 'Test'
       },
       {
-        name: "Jeans",
-        icon: "Test",
+        name: 'Jeans',
+        icon: 'Test'
       },
       {
-        name: "Shirts",
-        icon: "Test",
+        name: 'Shirts',
+        icon: 'Test'
       },
       {
-        name: "Dresses",
-        icon: "Test",
+        name: 'Dresses',
+        icon: 'Test'
       },
       {
-        name: "Tops",
-        icon: "Test",
-      },
-    ],
+        name: 'Tops',
+        icon: 'Test'
+      }
+    ]
   },
   {
     accessorise: [
       {
-        name: "Hats",
-        icon: "Test",
+        name: 'Hats',
+        icon: 'Test'
       },
       {
-        name: "Rings",
-        icon: "group",
+        name: 'Rings',
+        icon: 'group'
       },
       {
-        name: "Braslets",
-        icon: "group",
+        name: 'Braslets',
+        icon: 'group'
       },
       {
-        name: "Bags",
-        icon: "group",
-        id: 1,
+        name: 'Bags',
+        icon: 'group',
+        id: 1
       },
       {
-        name: "Glasses",
-        icon: "computer",
-        id: 1,
-      },
-    ],
-  },
-];
+        name: 'Glasses',
+        icon: 'computer',
+        id: 1
+      }
+    ]
+  }
+]
 
 // Data for rendering menu.
 const categoryList = [
   {
-    name: "Clothing",
+    name: 'Clothing',
     id: 1,
     children: categories[0].clothing.map((x, i) => {
       return {
         name: x.name,
         id: i,
-        url: "?category=clothes"+"&subcategory="+x.name,
-      };
-    }),
+        url: "&subcategory="+x.name
+      }
+    })
   },
 
   {
-    name: "Shoes",
+    name: 'Shoes',
     id: 2,
     children: categories[1].shoes.map((x, i) => {
       return {
         name: x.name,
         id: x.id,
-        url: "?category=shoes"+"&subcategory="+x.name,
-      };
-    }),
+        url: "?&subcategory="+x.name
+      }
+    })
   },
   {
-    name: "Accessorise",
+    name: 'Accessorises',
     id: 3,
     children: categories[2].accessorise.map((x, i) => {
       return {
         name: x.name,
         id: x.id,
-        url: "?category=accessories"+"&subcategory="+x.name,
-      };
-    }),
-  },
-];
+        url: "&subcategory="+x.name
+      }
+    })
+  }
+]
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    showMenu: state.showMenu,
-  };
-};
+    showMenu: state.showMenu
+  }
+}
 
 class ConnectedMenu extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       // initially item with id 1 is expanded
       expandedMenuItems: {
-        1: true,
+        1: true
       },
-      categoryList,
-    };
-    this.renderMenu = this.renderMenu.bind(this);
+      categoryList
+    }
+    this.renderMenu = this.renderMenu.bind(this)
   }
 
   // This method determines from URL whether to highlight a menu item or not
-  isMenuItemActive(item, location) {
-    if (location.pathname === "/" && location.search) {
-      let queryStringParsed = queryString.parse(location.search);
+  isMenuItemActive (item, location) {
+    if (location.pathname === '/' && location.search) {
+      let queryStringParsed = queryString.parse(location.search)
 
-      return item.name === queryStringParsed.category;
+      return item.name === queryStringParsed.category
     }
 
-    return item.url === location.pathname;
+    return item.url === location.pathname
   }
 
-  renderMenu(data) {
+  renderMenu (data) {
     return (
       <List>
         {data.map((x, i) => {
@@ -171,29 +171,26 @@ class ConnectedMenu extends Component {
                 to={x.url}
                 exact
                 isActive={(param, location) => {
-                  return this.isMenuItemActive(x, location);
+                  return this.isMenuItemActive(x, location)
                 }}
                 style={{
-                  textDecoration: "none",
-                  color: "rgb(32, 32, 34)",
+                  textDecoration: 'none',
+                  color: 'rgb(32, 32, 34)'
                 }}
                 key={x.id}
                 activeStyle={{
-                  color: "#4282ad",
-                  fontWeight: "bold",
+                  color: '#4282ad',
+                  fontWeight: 'bold'
                 }}
               >
                 <ListItem dense button>
-                  <ListItemIcon>
-                    <Icon>{x.icon}</Icon>
-                  </ListItemIcon>
                   <ListItemText
                     disableTypography
-                    primary={<div style={{ color: "inherit" }}>{x.name}</div>}
+                    primary={<div style={{ color: 'inherit' }}>{x.name}</div>}
                   />
                 </ListItem>
               </NavLink>
-            );
+            )
           } else {
             return (
               <Fragment key={x.id}>
@@ -202,14 +199,14 @@ class ConnectedMenu extends Component {
                   dense
                   onClick={() => {
                     // Update in state which menu items are expanded.
-                    this.setState((ps) => {
+                    this.setState(ps => {
                       return {
                         expandedMenuItems: {
                           ...ps.expandedMenuItems,
-                          [x.id]: !ps.expandedMenuItems[x.id],
-                        },
-                      };
-                    });
+                          [x.id]: !ps.expandedMenuItems[x.id]
+                        }
+                      }
+                    })
                   }}
                 >
                   <ListItemText primary={x.name} />
@@ -221,42 +218,42 @@ class ConnectedMenu extends Component {
                 </ListItem>
                 <Collapse
                   in={this.state.expandedMenuItems[x.id]}
-                  timeout="auto"
+                  timeout='auto'
                   unmountOnExit
                 >
                   {this.renderMenu(x.children)}
                 </Collapse>
               </Fragment>
-            );
+            )
           }
         })}
       </List>
-    );
+    )
   }
 
-  render() {
-    if (!this.props.showMenu) return null;
+  render () {
+    if (!this.props.showMenu) return null
     return (
       <div
         style={{
-          backgroundColor: "#FAFAFB",
-          minWidth: 250,
+          backgroundColor: '#FAFAFB',
+          minWidth: 250
         }}
       >
         <Typography
           style={{
-            textAlign: "center",
-            fontSize: "1.4em",
-            textDecoration: "underline orange",
+            textAlign: 'center',
+            fontSize: '1.4em',
+            textDecoration: 'underline orange'
           }}
         >
-          Category Filters{" "}
+          Category Filters{' '}
         </Typography>
         {this.renderMenu(this.state.categoryList)}
       </div>
-    );
+    )
   }
 }
 
-const Menu = withRouter(connect(mapStateToProps)(ConnectedMenu));
-export default Menu;
+const Menu = withRouter(connect(mapStateToProps)(ConnectedMenu))
+export default Menu

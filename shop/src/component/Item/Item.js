@@ -23,7 +23,7 @@ class ConnectedItem extends Component {
         >
           <CardMedia
             style={{ height: 250 }}
-            image={this.props.item.img}
+            image={this.props.item.MainImage}
             onClick={() => {
               this.props.history.push("/details/" + this.props.item.id);
             }}
@@ -37,11 +37,11 @@ class ConnectedItem extends Component {
                 whiteSpace: "wrap",
               }}
             >
-              {this.props.item.name}
+              {this.props.item.ProductName}
             </div>
-            <div style={{ margin: 10 }}>Price: {this.props.item.price} $</div>
+            <div style={{ margin: 10 }}>Price: {this.props.item.Price} $</div>
             <div style={{ color: "#1a9349", fontWeight: "bold", margin: 10 }}>
-              {this.props.item.store}
+              {this.props.item.BrandName}
             </div>
           </CardContent>
         </CardActionArea>

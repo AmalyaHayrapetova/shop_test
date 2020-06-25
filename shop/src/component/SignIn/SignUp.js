@@ -1,16 +1,16 @@
-import React,{Component} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { Component } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 import { withRouter, Redirect, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
@@ -19,13 +19,11 @@ import PropTypes from "prop-types";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-
   paper: {
     marginTop: theme.spacing(5),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 
   avatar: {
@@ -34,31 +32,27 @@ const useStyles = makeStyles((theme) => ({
   },
 
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
     marginBottom: 150,
-
   },
 
   submit: {
     margin: theme.spacing(3, 0, 2),
-
   },
 
   signUp: {
-      borderRadius: 50,
-      backgroundColor: "#F57F17",
-      padding: "9px",
-      fontSize: "18px",
-
+    borderRadius: 50,
+    backgroundColor: "#F57F17",
+    padding: "9px",
+    fontSize: "18px",
   },
 
-  cancel:{
-      borderRadius: 50,
-      backgroundColor: "#F57F17",
-      padding: "9px",
-      fontSize: "18px",
-
+  cancel: {
+    borderRadius: 50,
+    backgroundColor: "#F57F17",
+    padding: "9px",
+    fontSize: "18px",
   },
 
   account: {
@@ -66,142 +60,130 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "20px",
     paddingBottom: "20px",
     justifyContent: "center",
-    alignItems:  "center",
+    alignItems: "center",
     // paddingLef: "20px"
-
-  }
+  },
 }));
 
-
-class Register extends Component{
-
-
-  render(){
+class Register extends Component {
+  render() {
     const { classes } = this.props;
 
-  return (
-    <Container maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Create an Account
-        </Typography>
-        <form className={classes.form} validate="true">
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                // variant="outlined"
-                required
-                 id="firstName"
-                fullWidth
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                // variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                // variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                // variant="outlined"
-                required
-                fullWidth
-                // name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
+    return (
+      <Container maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Create an Account
+          </Typography>
+          <form className={classes.form} validate="true">
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="fname"
+                  name="firstName"
+                  // variant="outlined"
+                  required
+                  id="firstName"
+                  fullWidth
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  // variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="lname"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  // variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  // variant="outlined"
+                  required
+                  fullWidth
+                  // name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
               </Grid>
 
               <Grid item xs={12}>
-              <TextField
-                // variant="outlined"
-                required
-                fullWidth
-                // name="phone"
-                label="Phone Number"
-                id="phone"
-                type="text"
-                autoComplete="phoneNumber"
-              />
+                <TextField
+                  // variant="outlined"
+                  required
+                  fullWidth
+                  // name="phone"
+                  label="Phone Number"
+                  id="phone"
+                  type="text"
+                  autoComplete="phoneNumber"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="savePassword" color="primary" />}
+                  label="Remember Me."
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} >
-              <FormControlLabel
-                control={<Checkbox value="savePassword" color="primary" />}
-                label="Remember Me."
-              />
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  className={(classes.submit, classes.signUp)}
+                >
+                  Sign Up
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  className={(classes.submit, classes.cancel)}
+                  onClick={() => {
+                    this.props.history.push("/");
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-       <Grid container spacing={2}>
-
-         <Grid item xs={12} sm={6}>
-          <Button 
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={classes.submit,classes.signUp}
-          >
-            Sign Up
-          </Button>
-          </Grid>
-            <Grid item xs={12} sm={6}>
-
-           <Button 
-            type="button"
-            fullWidth
-            variant="contained"
-            className={classes.submit,classes.cancel}
-                            onClick={() => {
-                  this.props.history.push("/sign-up");
-                }}
-
-          >
-            Cancel
-          </Button>
-         </Grid>
-         </Grid>
-          <Grid container justify="flex-end">
-                        <Link to="/sign-in" className={classes.link}>
-            <Grid item className={classes.account}>
-                Already have an account? Sign in
-            </Grid>
+            <Grid container justify="flex-end">
+              <Link to="/sign-in" className={classes.link}>
+                <Grid item className={classes.account}>
+                  Already have an account? Sign in
+                </Grid>
               </Link>
-
-          </Grid>
-        </form>
-      </div>
-      {/* <Box mt={5}>
-        <Copyright />
-      </Box> */}
-     </Container>
-  );
-
-}
+            </Grid>
+          </form>
+        </div>
+      </Container>
+    );
+  }
 }
 
 Register.propTypes = {

@@ -10,9 +10,6 @@ import { connect } from "react-redux";
 import { showCartDlg, setCheckedOutItems } from "../../Redux/Actions";
 import { withRouter } from "react-router-dom";
 import CartRow from "./CartRow";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCartOutlined";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 
 const mapStateToProps = (state) => {
   return { open: state.showCartDialog, items: state.cartItems };
@@ -38,16 +35,7 @@ class ConnectedCartDialog extends Component {
               padding: 10,
               overflow: "auto",
             }}
-          >
-            {/* <AppBar position="static" style={{ backgroundColor: "#3863aa" }}>
-            <Toolbar>
-                <ShoppingCartIcon
-                  fontSize="large"
-                  style={{ color: "white", marginRight: 20 }}
-                />
-                Shopping Cart
-              </Toolbar>
-            </AppBar> */}
+        >
             <Table>
               <TableHead>
                 <TableRow>

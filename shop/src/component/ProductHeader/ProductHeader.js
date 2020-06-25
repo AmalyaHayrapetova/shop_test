@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import Tooltip from "@material-ui/core/Tooltip";
-//import PriceDialog from "../PriceDialog/PriceDialog";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { withRouter } from "react-router-dom";
 
 class ProductsHeader extends Component {

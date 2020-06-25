@@ -80,6 +80,18 @@ class SignIn extends Component {
     redirectToReferrer: false,
   };
 
+  handleUserNameTextFieldChange = (e) => {
+    this.setState({
+      userName: e.target.value,
+    });
+  };
+
+  handlePassTextFieldChange = (e) => {
+    this.setState({
+      pass: e.target.value,
+    });
+  };
+
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     if (this.state.redirectToReferrer === true) {
@@ -126,6 +138,8 @@ class SignIn extends Component {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={this.state.userName}
+                  onChange={this.handleUserNameTextFieldChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -138,6 +152,8 @@ class SignIn extends Component {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={this.state.pass}
+                  onChange={this.handlePassTextFieldChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -162,6 +178,9 @@ class SignIn extends Component {
                   //className={(classes.submit, classes.signIn)}
                   onClick={() => {
                     // Simulate authentication call
+                    if(this.state.userName === "" || this.state.pass === ""){
+                      return;
+                    } else {
                     Auth.authenticate(
                       this.state.userName,
                       this.state.pass,
@@ -172,13 +191,14 @@ class SignIn extends Component {
                         }
 
                         this.props.dispatch(
-                          setLoggedInUser({ name: user.name })
+                          setLoggedInUser({ name: user.name }) //add id
                         );
                         this.setState(() => ({
                           redirectToReferrer: true,
                         }));
                       }
                     );
+                    }
                   }}
                 >
                   Sign In

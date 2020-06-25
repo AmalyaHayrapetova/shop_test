@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -36,10 +35,10 @@ const useStyles = makeStyles((theme) => ({
 
 const subItems = ["Clothings", "Shoes", "Accessorises", "Face&Body"];
 const items = [
-  { pathName: "/product-list/gender=men", label: "MEN" },
-  { pathName: "/product-list/gender=women", label: "WOMEN" },
-  { pathName: "/product-list/gender=boy", label: "BOY" },
-  { pathName: "/product-list/gender=girl", label: "GIRL" },
+  { pathName: "/product-list/?gender=men", label: "MEN" },
+  { pathName: "/product-list/?gender=women", label: "WOMEN" },
+  { pathName: "/product-list/?gender=boys", label: "BOY" },
+  { pathName: "/product-list/?gender=girls", label: "GIRL" },
   { pathName: "/stores", label: "STORES" },
 ];
 

@@ -1,13 +1,25 @@
-import React, { Component } from 'react'
-
-
+import React, { Component } from "react";
 
 export default class Profile extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+  constructor(props) {
+    super(props);
+    this.state = { apiResponse: "" };
+  }
+
+  callAPI() {
+    fetch("http://localhost:9000/testAPI")
+      .then((res) => res.text())
+      .then((res) => this.setState({ apiResponse: res }));
+  }
+
+  componentWillMount() {
+    this.callAPI();
+  }
+
+  render() {
+    return
+     <div>
+     
+    </div>;
+  }
 }
