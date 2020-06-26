@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { addItemInCart } from "../../Redux/Actions";
-import Api from "../../Api";
+import {getProductById} from '../../api/DetailsApi';
 import Item from "../Item/Item";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
@@ -39,30 +39,35 @@ class ConnectedDetails extends Component {
       relatedItems: [],
       quantity: 1,
       item: null,
+      color:null,
       itemLoading: false,
       size: null,
       errorMessage: "",
       count: 0,
-      color: null,
     };
   }
 
-  async fetchProductAndRelatedItems(productId) {
+  async fetchProductAndRelatedItems() {
     this.setState({ itemLoading: true });
-
-    let item = await Api.getItemUsingID(productId);
-
-    let relatedItems = await Api.searchItems({
-      category: item.category,
-      gender: item.gender,
-    });
+    let items = await getProductById(this.props.match.params.id);
+    let colors = items[0]
+    let productDetails = items[1]
+    let productSizes = items[2]
+    let product = items[3]
+    console.log("Color is ", colors)
+    // let relatedItems = await Api.searchItems({
+    //   category: item.category,
+    //   gender: item.gender,
+    // });
 
     // Make sure this component is still mounted before we set state..
     if (this.isCompMounted) {
       this.setState({
-        item,
+        item : items,
+        product:product,
+        color:colors,
         quantity: 1,
-        relatedItems: relatedItems.data.filter((x) => x.id !== item.id),
+        //relatedItems: relatedItems.data.filter((x) => x.id !== item.id),
         itemLoading: false,
       });
     }
@@ -77,7 +82,7 @@ class ConnectedDetails extends Component {
 
   componentDidMount() {
     this.isCompMounted = true;
-    this.fetchProductAndRelatedItems(this.props.match.params.id);
+    this.fetchProductAndRelatedItems();
   }
 
   componentWillUnmount() {
@@ -96,7 +101,7 @@ class ConnectedDetails extends Component {
       return <CircularProgress className="circular" />;
     }
 
-    if (!this.state.item) {
+    if (!this.state.product) {
       return null;
     }
 
@@ -116,15 +121,15 @@ class ConnectedDetails extends Component {
               fontSize: 22,
             }}
           >
-            {this.state.item.name}
+            {this.state.product[0].ProductName}
           </div>
-          <HoverRating itemValue={this.state.item.rating} />
+          <HoverRating itemValue="5" />
         </div>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <div>
             <img
-              src={this.state.item.imageUrls[0]}
-              alt={this.state.item.name}
+              src={this.state.product[0].MainImage}
+              alt={this.state.product[0].ProductName}
               width={500}
               height={500}
               style={{
@@ -147,11 +152,11 @@ class ConnectedDetails extends Component {
                 fontSize: 16,
               }}
             >
-              Price: {this.state.item.price} AMD
+              Price: {this.state.product[0].Price} $
             </div>
 
             <div style={{ fontSize: 14, marginTop: 5, color: "#228B22" }}>
-              {this.state.item.store}
+              {this.state.product[0].BrandName}
             </div>
 
             <div>
@@ -180,11 +185,11 @@ class ConnectedDetails extends Component {
                   }}
                 >
                   <option aria-label="None" value="" />
-                  {this.state.item.sizes.map((size, index) => {
-                    if (size.count > 0)
+                  {this.state.item[2].map((size, index) => {
+                    if (size.AvailableCount > 0)
                       return (
-                        <option key={size.size} value={size.size}>
-                          {size.size}
+                        <option key={size.SizeType} value={size.SizeType}>
+                          {size.SizeType}
                         </option>
                         //                   return (
                         //   <MenuItem disabled value="">
@@ -194,8 +199,8 @@ class ConnectedDetails extends Component {
                         // );
                       );
                     return (
-                      <option disabled key={size.size} value={size.size}>
-                        {size.size}
+                      <option disabled key={size.SizeType} value={size.SizeType}>
+                        {size.SizeType}
                         {" - Not Available "}
                       </option>
                     );
@@ -216,7 +221,7 @@ class ConnectedDetails extends Component {
                 width: 400,
               }}
             >
-              {this.state.item.colors.map((color, index) => {
+              {this.state.item[0].map((color, index) => {
                 return (
                   <img
                    src={'../../25041.jpg'}
@@ -227,9 +232,9 @@ class ConnectedDetails extends Component {
                       width: 100,
                       height: 100,
                     }}
-                    alt={this.state.item.name}
+                    alt={color}
                     onClick={(e) => {
-                      this.setState({ color: color });
+                      this.setState({ color: color.Color });
                     }}
                   />
                 );
@@ -254,7 +259,7 @@ class ConnectedDetails extends Component {
                   console.log(this.state.size);
                   this.props.dispatch(
                     addItemInCart({
-                      ...this.state.item,
+                      ...this.state.product,
                       quantity: this.state.quantity,
                       size: this.state.size,
                     })
@@ -266,7 +271,7 @@ class ConnectedDetails extends Component {
             </Button>
           </div>
         </div>
-        <div>
+        {/* <div>
           {this.state.item.imageUrls.map((image) => {
             return (
               <img
@@ -283,7 +288,7 @@ class ConnectedDetails extends Component {
               />
             );
           })}
-        </div>
+        </div> */}
         {/* Product description */}
         <div
           style={{
@@ -304,10 +309,10 @@ class ConnectedDetails extends Component {
           <Grid container spacing={2} style={{ backgroundColor: "" }}>
             <Grid item xs={12} md={6}>
               <List>
-                {this.state.item.description.map((desc) => {
+                {this.state.item[1].map((desc) => {
                   return (
                     <ListItem>
-                      <ListItemText primary={desc} />
+                      <ListItemText primary={desc.MaterialType} />
                     </ListItem>
                   );
                 })}

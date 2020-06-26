@@ -16,17 +16,17 @@ const CartRow = (props) => {
   return (
     <TableRow>
       <TableCell>
-        <Link to={`/details/${item.id}`}>
+        <Link to={`/details/${item[0].id}`}>
           <div
             onClick={() => {
               props.dispatch(showCartDlg(false));
             }}
           >
-            {item.name}
+            {item[0].ProductName}
           </div>
         </Link>
       </TableCell>
-      <TableCell>{item.price}</TableCell>
+      <TableCell>{item[0].Price}$</TableCell>
             <TableCell>{item.size}</TableCell>
       <TableCell>
         <TextField
@@ -38,7 +38,7 @@ const CartRow = (props) => {
             if (quantity < 0) return;
             props.dispatch(
               updateCartItemQnt({
-                id: item.id,
+                id: item[0].id,
                 quantity,
               })
             );
