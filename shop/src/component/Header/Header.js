@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addItemInFavourite, showCartDlg, toggleMenu, logout } from "../../Redux/Actions";
+import { addItemInFavourite, showCartDlg, toggleMenu, logout,showSavedItems } from "../../Redux/Actions";
 import Auth from "../../Auth";
 //import { categories } from "../data/Data";
 import Person from "@material-ui/icons/PersonOutline";

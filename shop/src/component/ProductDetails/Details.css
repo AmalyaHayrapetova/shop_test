@@ -1,0 +1,22 @@
+.related-items-content {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  font-size: 20px;
+  border-top: 0.5px solid lightslategrey;
+}
+.details-main-container {
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+.product-details-content {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.product-details-list {
+  font-size: 13px;
+  /* overflow: 'auto'; */
+}
