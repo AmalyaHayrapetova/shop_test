@@ -3,14 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import { NavLink } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { withStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import Popper from "@material-ui/core/Popper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const subItems = ["Clothings", "Shoes", "Accessorises", "Face&Body"];
 const items = [
   { pathName: "/product-list/?gender=men", label: "MEN" },
   { pathName: "/product-list/?gender=women", label: "WOMEN" },
@@ -89,7 +85,7 @@ class CenterTabs extends Component {
                     color: "rgb(32, 32, 34)",
                   }}
                 >
-                  <Tab
+                   <Tab
                     key={index}
                     onMouseEnter={this.handleMenuOpen.bind(this, index)}
                     data-key={index}
@@ -97,11 +93,11 @@ class CenterTabs extends Component {
                     label={item.label}
                     aria-owns={this.state.open ? "menu-list-grow" : undefined}
                     aria-haspopup={"true"}
-                  />
+                  /> 
                 </NavLink>
               ))}{" "}
             </Tabs>
-            <Popper
+            {/* <Popper
               anchorEl={this.state.anchorEl}
               id="menu-list-grow"
               placement="bottom"
@@ -116,7 +112,7 @@ class CenterTabs extends Component {
                   ))}
                 </Paper>
               </div>
-            </Popper>
+            </Popper> */}
           </Paper>
         </AppBar>
       </div>

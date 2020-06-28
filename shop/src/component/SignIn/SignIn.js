@@ -6,70 +6,14 @@ import TextField from '@material-ui/core/TextField'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { withRouter, Redirect, Link } from 'react-router-dom'
-import { useState } from 'react'
+import { withRouter, Link } from 'react-router-dom'
 import { authenticate } from '../../api/Auth'
 import { setLoggedInUser } from '../../Redux/Actions'
 import { connect } from 'react-redux'
 
-/*
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(10),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: "#F57170",
-  },
-
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(10),
-    marginBottom: 90,
-  },
-
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-
-  signIn: {
-    borderRadius: 50,
-    backgroundColor: "#F57F17",
-    padding: "9px",
-    fontSize: "18px",
-  },
-
-  cancel: {
-    borderRadius: 50,
-    backgroundColor: "#F57F17",
-    padding: "9px",
-    fontSize: "18px",
-  },
-
-  account: {
-    // padding: "10px",
-    paddingTop: "40px",
-    paddingBottom: "20px",
-    justifyContent: "center",
-    alignItems: "center",
-    // paddingLef: "20px"
-  },
-
-  link: {
-    color: "inherit",
-    textDecoration: "inherit",
-  },
-}));
-*/
 
 class SignIn extends Component {
   constructor (props) {

@@ -1,7 +1,6 @@
 async function callBackendAPI (gender, subCategory, store) {
   try {
     let data
-    let responseJson
     if (gender !== undefined && subCategory === undefined) {
       switch (gender) {
         case 'women': {
@@ -11,43 +10,28 @@ async function callBackendAPI (gender, subCategory, store) {
         case 'men': {
           data = await fetch('/product/gender/men')
           break
-
-          // responseJson = data.json()
-          // return responseJson
         }
         case 'boys': {
           data = await fetch('/product/gender/boys')
           break
-
-          // responseJson = data.json()
-          // return responseJson
         }
         case 'girls': {
           data = await fetch('/product/gender/girls')
           break
-
-          // responseJson = data.json()
-          // return responseJson
+        }
+        default: {
+          console.error('No such gender type')
         }
       }
     } else if (store === undefined) {
-      data = await fetch(`/find?subcategory=${subCategory}&gender=${gender}`)
-
-      // responseJson = data.json()
-      // console.log('res ', responseJson)
-      // return responseJson
+      data = await fetch(
+        `/product/find?subcategory=${subCategory}&gender=${gender}`
+      )
     } else if (gender === undefined) {
       data = await findDataWithStoreAndSubCategory(subCategory, store)
     } else {
       data = await findAll(subCategory, store, gender)
     }
-
-    // return new Promise(resolve => {
-    //   // simulate a fetch call
-    //   // setTimeout(() => {
-    //     resolve(data.json())
-    //   // }, 500)
-    // })
     return Promise.all([data.json()])
   } catch (error) {
     console.error(`Error is: ${error}`)
@@ -55,7 +39,9 @@ async function callBackendAPI (gender, subCategory, store) {
 }
 
 async function findDataWithStoreAndSubCategory (subCategory, store) {
-  let data = await fetch(`/find?subcategory=${subCategory}&store=${store}`)
+  let data = await fetch(
+    `/product/find?subcategory=${subCategory}&store=${store}`
+  )
   return data
 }
 

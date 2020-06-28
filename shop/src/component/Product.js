@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import ButtonBase from '@material-ui/core/ButtonBase'
-import GridList from '@material-ui/core/GridList'
 import queryString from 'query-string'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Item from './Item/Item'
@@ -49,7 +45,7 @@ class Product extends Component {
 
     this.state = {
       loading: false,
-      totalItemsCount: null,
+      totalItemsCount: 0,
       items: [],
       page: 1,
       itemsPerPage: 25,
@@ -67,7 +63,7 @@ class Product extends Component {
     let subCategory = qsAsObject.subcategory
     let store = qsAsObject.store
     let results = await callBackendAPI(gender, subCategory, store)
-    let totalLength = results.length
+    let totalLength = results[0].length
 
     results = results.slice(
       (this.state.page - 1) * this.state.itemsPerPage,

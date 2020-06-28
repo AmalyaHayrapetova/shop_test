@@ -1,14 +1,9 @@
 import React, {Component} from "react";
 import { withRouter } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 
@@ -49,7 +44,7 @@ class PaymentForm extends Component {
     const { classes } = this.props;
 
     let totalPrice = this.props.checkedOutItems.reduce((accumulator, item) => {
-      return accumulator + item.price * item.quantity;
+      return accumulator + item[0].Price * item[0].quantity;
     }, 0);
 
 
@@ -63,7 +58,7 @@ class PaymentForm extends Component {
           <ListItem className={classes.listItem}>
             <ListItemText primary="Total Price" />
             <Typography variant="subtitle1" className={classes.total}>
-              {totalPrice}
+              {totalPrice}$
             </Typography>
           </ListItem>
         </List>
