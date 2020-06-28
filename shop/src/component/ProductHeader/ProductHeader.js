@@ -7,16 +7,11 @@ class ProductsHeader extends Component {
   };
 
   render() {
-    let { parsedQS, totalItemsCount, updateQueryString } = this.props;
+    let { parsedQS, totalItemsCount } = this.props;
 
     // Grab some values from the query string
-    let usePriceFilter = parsedQS.usePriceFilter === "true";
-    let minPrice = parsedQS.minPrice || 0;
-    let maxPrice = parsedQS.maxPrice || 1000;
-    let sortValue = parsedQS.sortValue || "lh";
     let keyword = parsedQS.term;
     let category = parsedQS.category;
-    let gender = parsedQS.gender;
 
     let subtitle = (
       <React.Fragment>

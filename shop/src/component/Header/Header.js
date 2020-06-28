@@ -48,7 +48,7 @@ class ConnectedHeader extends Component {
   state = {
     searchTerm: "",
     anchorEl: null,
-    //categoryFilterValue: categories[0].name
+    store: ""
   };
 
   render() {
@@ -74,7 +74,7 @@ class ConnectedHeader extends Component {
               </Typography>
               <Input
                 mdc_style={["dense", "smooth", "search"]}
-                placeholder="Search Products..."
+                placeholder="Search for store and categories..."
                 value={this.state.searchTerm}
                 icon_opacity={0.3}
                 icon_clear={<CancelIcon />}
@@ -98,10 +98,10 @@ class ConnectedHeader extends Component {
                 onClick={() => {
                   //change
                   this.props.history.push(
-                    "/?category=" +
-                      this.state.categoryFilterValue +
-                      "&term=" +
-                      this.state.searchTerm
+                    "/product-list?store=" +
+                      this.state.searchTerm.split(" ")[0] +
+                      "&subcategory=" +
+                      this.state.searchTerm.split(" ")[1]
                   );
                 }}
               />

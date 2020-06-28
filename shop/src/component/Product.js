@@ -11,7 +11,7 @@ import Item from './Item/Item'
 import Paging from './paging/Paging'
 import ProductsHeader from './ProductHeader/ProductHeader'
 import Menu from './CategoryMenu/CategoryFilter'
-import { callBackendAPI } from '../api/Api'
+import { callBackendAPI } from '../api/ProductApi'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,7 +53,8 @@ class Product extends Component {
       totalItemsCount: null,
       items: [],
       page: 1,
-      itemsPerPage: 25
+      itemsPerPage: 25,
+      isCompMounted: false
     }
     this.updateQueryString = this.updateQueryString.bind(this)
   }
@@ -63,10 +64,10 @@ class Product extends Component {
 
     // Parse the query string
     let qsAsObject = queryString.parse(this.props.location.search)
-    let gender = qsAsObject.gender;
-    let category = qsAsObject.category
+    let gender = qsAsObject.gender
     let subCategory = qsAsObject.subcategory
-    let results = await callBackendAPI(gender, subCategory)
+    let store = qsAsObject.store
+    let results = await callBackendAPI(gender, subCategory, store)
     let totalLength = results.length
 
     results = results.slice(
@@ -75,15 +76,21 @@ class Product extends Component {
     )
 
     this.setState({
-      items: results,
+      items: results[0],
       loading: false,
       totalItemsCount: totalLength
     })
   }
 
   componentDidMount () {
+    this.isCompMounted = true
+
     this.fetchData()
   }
+
+  // componentWillUnmount () {
+  //   this.isCompMounted = false
+  // }
 
   updateQueryString (newValues) {
     let currentQS = queryString.parse(this.props.location.search)

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import IconButton from '@material-ui/core/IconButton'
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import { connect } from 'react-redux'
 import { addItemInFavourite, deleteSavedItems } from '../../Redux/Actions'
 import { withRouter } from 'react-router-dom'
@@ -10,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Tooltip from '@material-ui/core/Tooltip'
-import Button from '@material-ui/core/Button'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 
 class ConnectedItem extends Component {

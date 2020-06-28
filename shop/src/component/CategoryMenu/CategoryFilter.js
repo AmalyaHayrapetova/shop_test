@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import queryString from 'query-string'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-//import categoryList from "../../data/data";
+//import categories from "../../data/data";
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import Icon from '@material-ui/core/Icon'
@@ -19,73 +19,99 @@ const categories = [
   {
     clothing: [
       {
-        name: 'Jumpers & Cardigans',
-        icon: 'Test'
+        id: 1,
+        SubCategoryName: 'Dresses'
       },
       {
-        name: 'Jeans',
-        icon: 'Test'
+        id: 2,
+        SubCategoryName: 'Blouses & Shirts'
       },
       {
-        name: 'Shirts',
-        icon: 'Test'
+        id: 3,
+        SubCategoryName: 'Coats & Jackets'
       },
       {
-        name: 'Dresses',
-        icon: 'Test'
+        id: 4,
+
+        SubCategoryName: 'Hoodies & Sweatshirts'
       },
       {
-        name: 'Tops',
-        icon: 'Test'
+        id: 5,
+
+        SubCategoryName: 'Jeans'
+      },
+      {
+        id: 6,
+        SubCategoryName: 'Jumpers & Cardigans'
+      },
+      { id: 7, SubCategoryName: 'Jumpsuits & Playsuits' },
+      {
+        id: 8,
+        SubCategoryName: 'Skirts'
+      },
+      {
+        id: 9,
+        SubCategoryName: 'Shorts'
+      },
+      {
+        id: 10,
+        SubCategoryName: 'Sportswear & Joggers'
+      },
+      { id: 11, SubCategoryName: 'Suits & Workwear' },
+      {
+        id: 12,
+        SubCategoryName: 'Swim & Beachwear'
+      },
+      {
+        id: 13,
+        SubCategoryName: 'Tops & T-Shirts'
+      },
+      { id: 14, SubCategoryName: 'Trousers & Leggings' },
+      { id: 15, SubCategoryName: 'Socks' },
+      {
+        id: 16,
+        SubCategoryName: 'Polos'
       }
     ]
   },
   {
     shoes: [
       {
-        name: 'Jumpers & Cardigans',
-        icon: 'Test'
+        name: 'Jumpers & Cardigans'
       },
       {
-        name: 'Jeans',
-        icon: 'Test'
+        name: 'Jeans'
       },
       {
-        name: 'Shirts',
-        icon: 'Test'
+        name: 'Shirts'
       },
       {
-        name: 'Dresses',
-        icon: 'Test'
+        name: 'Dresses'
       },
       {
-        name: 'Tops',
-        icon: 'Test'
+        name: 'Tops'
       }
     ]
   },
   {
     accessorise: [
       {
-        name: 'Hats',
-        icon: 'Test'
+        name: 'Hats'
       },
       {
-        name: 'Rings',
-        icon: 'group'
+        name: 'Rings'
       },
       {
-        name: 'Braslets',
-        icon: 'group'
+        name: 'Braslets'
       },
       {
         name: 'Bags',
-        icon: 'group',
+
         id: 1
       },
       {
         name: 'Glasses',
-        icon: 'computer',
+
         id: 1
       }
     ]
@@ -97,11 +123,11 @@ const categoryList = [
   {
     name: 'Clothing',
     id: 1,
-    children: categories[0].clothing.map((x, i) => {
+    children: categories[0].clothing.map(x => {
       return {
-        name: x.name,
-        id: i,
-        url: "&subcategory="+x.name
+        name: x.SubCategoryName,
+        id: x.id,
+        url: '?subcategory=' + x.SubCategoryName + '&'
       }
     })
   },
@@ -113,18 +139,18 @@ const categoryList = [
       return {
         name: x.name,
         id: x.id,
-        url: "?&subcategory="+x.name
+        url: '?subcategory=' + x.name + '&'
       }
     })
   },
   {
-    name: 'Accessorises',
+    name: 'Accessories',
     id: 3,
     children: categories[2].accessorise.map((x, i) => {
       return {
         name: x.name,
         id: x.id,
-        url: "&subcategory="+x.name
+        url: '?subcategory=' + x.name + '&'
       }
     })
   }
@@ -145,7 +171,9 @@ class ConnectedMenu extends Component {
       expandedMenuItems: {
         1: true
       },
-      categoryList
+      categoryList,
+      categories,
+      url: ''
     }
     this.renderMenu = this.renderMenu.bind(this)
   }
@@ -161,6 +189,18 @@ class ConnectedMenu extends Component {
     return item.url === location.pathname
   }
 
+  async getUrl () {
+    let qsAsObject = queryString.parse(this.props.location.search)
+    let gender = qsAsObject.gender
+    this.setState({
+      url: 'gender=' + gender
+    })
+  }
+
+  componentDidMount () {
+    this.getUrl()
+  }
+
   renderMenu (data) {
     return (
       <List>
@@ -168,7 +208,7 @@ class ConnectedMenu extends Component {
           if (!x.children) {
             return (
               <NavLink
-                to={x.url}
+                to={x.url + this.state.url}
                 exact
                 isActive={(param, location) => {
                   return this.isMenuItemActive(x, location)

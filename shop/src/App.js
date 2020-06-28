@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import '@material-ui/core/styles'
-//import NavBar from "./component/NavBar";
 import MainCategories from './component/Menu'
 import Product from './component/Product'
 import CartDialog from './component/ShoppingCart/Cart'
@@ -13,8 +12,8 @@ import Checkout from './component/Orders/Checkout'
 import Home from './component//HomeContent/Home'
 import Header from './component/Header/Header'
 import Details from './component/ProductDetails/Details'
-import './App.css'
 import FaveItems from './component/Favourites/SavedItems'
+import './App.css'
 
 class App extends React.Component {
   render () {

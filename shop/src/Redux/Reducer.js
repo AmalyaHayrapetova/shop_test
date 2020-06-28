@@ -8,7 +8,8 @@ const initialState = {
   checkedOutItems: [],
   loggedInUser: null,
   favouriteItems: [],
-  showSavedItems: false
+  showSavedItems: false,
+  addressInfo: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -35,12 +36,10 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, cartItems: state.cartItems.concat(action.payload) }
     }
     case CONSTANTS.ADD_ITEM_TO_FAVOURITE: {
-      var index = state.favouriteItems.findIndex(
-        x => x.id === action.payload.id
-      )
-      if (index !== -1) {
+      var item = state.favouriteItems.findIndex(x => x.id === action.payload.id)
+      if (item !== -1) {
         let cloneFaveItems = [...state.favouriteItems]
-        cloneFaveItems[index] = {
+        cloneFaveItems[item] = {
           ...cloneFaveItems[index]
         }
         return { ...state, favouriteItems: cloneFaveItems }
@@ -93,6 +92,9 @@ const rootReducer = (state = initialState, action) => {
 
       // If we couldn't find such item, do nothing.
       return state
+    }
+    case CONSTANTS.SET_ADDRESS_INFO: {
+      return { ...state, addressInfo: action.payload }
     }
     default:
       return state

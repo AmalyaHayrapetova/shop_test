@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { setCheckedOutItems } from "../../Redux/Actions";
+import { setCheckedOutItems ,setAddressInfo} from "../../Redux/Actions";
 
 const products = [
   { name: "Product 1", desc: "A nice thing", price: "$9.99" },
@@ -16,13 +16,6 @@ const products = [
   { name: "Product 3", desc: "Something else", price: "$6.51" },
   { name: "Product 4", desc: "Best thing of all", price: "$14.11" },
   { name: "Shipping", desc: "", price: "Free" },
-];
-const addresses = [
-  "1 Material-UI Drive",
-  "Reactville",
-  "Anytown",
-  "99999",
-  "USA",
 ];
 const payments = [
   { name: "Card type", detail: "Visa" },
@@ -46,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
 const mapStateToProps = (state) => {
   return {
     checkedOutItems: state.checkedOutItems,
+    addressInfo: state.addressInfo,
+    addresses : [
+"addressInfo.",
+  "Reactville",
+  "Anytown",
+  "99999",
+  "USA",
+]
+
   };
 };
 
@@ -54,7 +56,7 @@ class ReviewOrder extends Component {
 
   render() {
     let totalPrice = this.props.checkedOutItems.reduce((accumulator, item) => {
-      return accumulator + item.price * item.quantity;
+      return accumulator + item[0].Price * item.quantity;
     }, 0);
 
     return (
@@ -65,16 +67,16 @@ class ReviewOrder extends Component {
         <List disablePadding>
             {this.props.checkedOutItems.map((item, index) => {
               return(
-            <ListItem key={item.name}>
-              <ListItemText primary={item.name} secondary={item.desc} />
-              <Typography variant="body2">{item.price}</Typography>
+            <ListItem key={item[0].ProductName}>
+              <ListItemText primary={item[0].ProductName} secondary={item.desc} />
+              <Typography variant="body2">{item[0].Price}</Typography>
             </ListItem>
               );
           })}
           <ListItem>
             <ListItemText primary="Total" />
             <Typography variant="subtitle1" style={{ fontWeight: 700 }}>
-            {totalPrice}
+            {totalPrice}$
                </Typography>
                </ListItem>
         
@@ -84,9 +86,15 @@ class ReviewOrder extends Component {
             <Typography variant="h6" gutterBottom>
               Shipping
             </Typography>
-            <Typography gutterBottom>John Smith</Typography>
-            <Typography gutterBottom>{addresses.join(", ")}</Typography>
+            {this.props.addressInfo.map((user, index) => {
+
+          return(
+            <Typography gutterBottom>{user.firstName}</Typography>
+            //<Typography gutterBottom>{this.state.addresses}</Typography>
+          );
+           })}
           </Grid>
+
           <Grid item container direction="column" xs={12} sm={6}>
             <Typography variant="h6" gutterBottom>
               Payment details

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addItemInFavourite } from '../../Redux/Actions'
 import Item from '../Item/Item'
 import Titles from '../ProductHeader/Titles'
 import './SavedItems.css'

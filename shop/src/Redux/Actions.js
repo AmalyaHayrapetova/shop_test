@@ -32,8 +32,9 @@ export const logout = () => ({
   type: CONSTANTS.LOGOUT
 })
 
-export const setAddressInfo = () => ({
-  type: CONSTANTS.SET_ADDRESS_INFO
+export const setAddressInfo = address => ({
+  type: CONSTANTS.SET_ADDRESS_INFO,
+  payload: address
 })
 
 export const showCategory = () => ({
@@ -49,7 +50,6 @@ export const showSavedItems = status => ({
   type: CONSTANTS.SHOW_SAVED_ITEMS,
   payload: status
 })
-
 export const deleteSavedItems = id => ({
   type: CONSTANTS.DELETE_SAVED_ITEMS,
   payload: id

@@ -18,7 +18,6 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import { withStyles } from '@material-ui/styles'
 import HoverRating from '../Rating.js'
-import Paper from '@material-ui/core/Paper'
 import './Details.css'
 
 const useStyles = theme => ({
@@ -53,10 +52,7 @@ class ConnectedDetails extends Component {
     this.setState({ itemLoading: true })
     let items = await getProductById(this.props.match.params.id)
     let colors = items[0]
-    let productDetails = items[1]
-    let productSizes = items[2]
     let product = items[3]
-    console.log('Color is ', colors)
     // let relatedItems = await Api.searchItems({
     //   category: item.category,
     //   gender: item.gender,
