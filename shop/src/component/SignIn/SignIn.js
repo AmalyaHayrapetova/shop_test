@@ -9,11 +9,10 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Redirect, Link } from 'react-router-dom'
 import { authenticate } from '../../api/Auth'
 import { setLoggedInUser } from '../../Redux/Actions'
 import { connect } from 'react-redux'
-
 
 class SignIn extends Component {
   constructor (props) {
@@ -22,32 +21,33 @@ class SignIn extends Component {
     this.state = {
       email: '',
       password: '',
-      _isAuthenticated: false
+      _isAuthenticated: false,
+      wrongCred: false,
+      redirectToReferrer: false
     }
-    // this.handleSubmit = this.handleSubmit.bind(this)
-    //this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   async handleSubmit () {
     let response = await authenticate(this.state.email, this.state.password)
-    // if (response.statusCode === 200) {
-    //   this.setState({ _isAuthenticated: true })
-    // } else {
-    //   this.setState({ _isAuthenticated: false })
-    //   console.log('login error')
-    // }
+    if (response[0].statusCode === 404) {
+      this.setState({ _isAuthenticated: false })
+    } else {
+      this.setState({
+        _isAuthenticated: true,
+        redirectToReferrer: true,
+        user: response[0].id
+      })
+    }
   }
-
-  componentDidMount () {
-    this.handleSubmit()
-  }
-  // handleChange (event) {
-  //   this.setState({
-  //     [event.target.name]: event.target.value
-  //   })
-  // }
 
   render () {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    // If user was authenticated, redirect her to where she came from.
+    if (this.state.redirectToReferrer === true) {
+      return <Redirect to={from} />
+    }
+
     return (
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
@@ -83,8 +83,8 @@ class SignIn extends Component {
                   required
                   fullWidth
                   // id='email'
+                  //name='email'
                   label='Email Address'
-                  name='email'
                   autoComplete='email'
                   value={this.state.email}
                   onChange={e => {
@@ -97,8 +97,8 @@ class SignIn extends Component {
                   // variant="outlined"
                   required
                   fullWidth
-                  name='password'
                   label='Password'
+                  //name='password'
                   type='password'
                   autoComplete='current-password'
                   value={this.state.password}
@@ -117,32 +117,32 @@ class SignIn extends Component {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Button
-                  type='submit'
                   fullWidth
                   variant='contained'
                   style={{
-                    borderRadius: 50,
                     backgroundColor: '#F57F17',
                     padding: '9px',
                     fontSize: '18px'
                   }}
-                  onClick={
-                    () => this.handleSubmit()
-
-                    // user => {
-                    //   this.props.dispatch(
-                    //     setLoggedInUser({ email: user.email }) //add id
-                    //   )
-                    // })
-                  }
+                  onClick={() => {
+                    this.handleSubmit()
+                    if (this.state._isAuthenticated) {
+                      this.props.dispatch(
+                        setLoggedInUser({ user: this.state.user.id })
+                      )
+                    } else {
+                      this.setState({ wrongCred: true })
+                      return
+                    }
+                  }}
                 >
                   Sign In
                 </Button>
-                {/* {this.state.wrongCred && (
+                {/* {this.state.wrongCred ? (
                   <div style={{ color: 'red' }}>
                     Wrong username and/or password
                   </div>
-                )} */}
+                ) : ""} */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Button
@@ -150,7 +150,6 @@ class SignIn extends Component {
                   fullWidth
                   variant='contained'
                   style={{
-                    borderRadius: 50,
                     backgroundColor: '#F57F17',
                     padding: '9px',
                     fontSize: '18px'
@@ -185,6 +184,5 @@ class SignIn extends Component {
     )
   }
 }
-const Login = withRouter(connect()(SignIn))
-
+const Login = withRouter(SignIn)
 export default Login

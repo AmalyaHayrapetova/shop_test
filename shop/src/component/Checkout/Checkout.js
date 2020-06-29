@@ -13,8 +13,18 @@ import Review from './Review'
 import Payment from './PaymentForms'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setCheckedOutItems, setAddressInfo } from '../../Redux/Actions'
+import {
+  setCheckedOutItems,
+  setAddressInfo,
+  removeCheckoutItems
+} from '../../Redux/Actions'
 import { withStyles } from '@material-ui/styles'
+
+const mapStateToProps = state => {
+  return {
+    checkedOutItems: state.checkedOutItems
+  }
+}
 
 const useStyles = theme => ({
   appBar: {
@@ -140,10 +150,14 @@ class Checkout extends Component {
                     <Button
                       variant='contained'
                       color='primary'
-                      onClick={
-                        this.handleNext
-                       
-                      }
+                      onClick={() => {
+                        this.setState({ activeStep: this.state.activeStep + 1 })
+                        if (this.state.activeStep === steps.length - 1) {
+                          this.props.dispatch(setCheckedOutItems(this.props.checkedOutItems))
+                          // console.log("checkeout ",this.props.checkedOutItems)
+                          this.props.dispatch(removeCheckoutItems([]))
+                        }
+                      }}
                       className={classes.button}
                     >
                       {this.state.activeStep === steps.length - 1
@@ -161,6 +175,6 @@ class Checkout extends Component {
   }
 }
 
-const CheckoutItems = withRouter(Checkout)
+const CheckoutItems = withRouter(connect(mapStateToProps)(Checkout))
 
 export default withStyles(useStyles)(CheckoutItems)

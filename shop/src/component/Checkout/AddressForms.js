@@ -15,7 +15,8 @@ class AddressForm extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      addressOne: '',
+      street: '',
+      flat:'',
       city: '',
       stateProvince: '',
       zip: '',
@@ -58,17 +59,31 @@ class AddressForm extends Component {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6}>
             <TextField
               required
               id='address1'
               name='address1'
-              label='Address line 1'
+              label='Street'
               fullWidth
               autoComplete='billing address-line1'
-              value={this.state.addressOne}
+              value={this.state.street}
               onChange={e => {
-                this.setState({ addressOne: e.target.value })
+                this.setState({ street: e.target.value })
+              }}
+            />
+          </Grid>
+                    <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id='address1'
+              name='address1'
+              label='Apt/Flat'
+              fullWidth
+              autoComplete='billing address-line1'
+              value={this.state.flat}
+              onChange={e => {
+                this.setState({ flat: e.target.value })
               }}
             />
           </Grid>

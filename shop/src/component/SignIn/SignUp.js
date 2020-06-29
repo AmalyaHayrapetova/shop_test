@@ -1,178 +1,179 @@
-import React, { Component } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import { withRouter, Link } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-// import "./css/signIn.css"
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(5),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: "#F57170",
-  },
-
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-    marginBottom: 150,
-  },
-
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-
-  signUp: {
-    borderRadius: 50,
-    backgroundColor: "#F57F17",
-    padding: "9px",
-    fontSize: "18px",
-  },
-
-  cancel: {
-    borderRadius: 50,
-    backgroundColor: "#F57F17",
-    padding: "9px",
-    fontSize: "18px",
-  },
-
-  account: {
-    // padding: "10px",
-    paddingTop: "20px",
-    paddingBottom: "20px",
-    justifyContent: "center",
-    alignItems: "center",
-    // paddingLef: "20px"
-  },
-}));
+import React, { Component } from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Grid from '@material-ui/core/Grid'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import { withRouter, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { setLoggedInUser } from '../../Redux/Actions'
+import { registerUser } from '../../api/SignUp'
 
 class Register extends Component {
-  render() {
-    const { classes } = this.props;
+  constructor (props) {
+    super(props)
 
+    this.state = {
+      firstName: null,
+      lastName: null,
+      email: null,
+      password: null,
+      phoneNumber: null,
+      _isAuthenticated: false,
+      wrongCred: false,
+      redirectToReferrer: false
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  async handleSubmit () {
+    let response = await registerUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phoneNumber)
+    if (response[0].statusCode === 404) {
+      this.setState({ _isAuthenticated: false })
+    } else {
+      this.setState({
+        _isAuthenticated: true,
+        redirectToReferrer: true,
+        user: response[0].id
+      })
+    }
+  }
+
+  render () {
     return (
-      <Container maxWidth="xs">
+      <Container maxWidth='xs'>
         <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
+          <Avatar
+            style={{
+              margin: 10,
+              backgroundColor: '#F57170'
+            }}
+          >
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Create an Account
           </Typography>
-          <form className={classes.form} validate="true">
+          <form validate='true'>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  // variant="outlined"
+                  autoComplete='fname'
                   required
-                  id="firstName"
+                  id='firstName'
                   fullWidth
-                  label="First Name"
+                  label='First Name'
                   autoFocus
+                  value={this.state.firstName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  // variant="outlined"
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
+                  id='lastName'
+                  label='Last Name'
+                  autoComplete='lname'
+                  value={this.state.lastName}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  // variant="outlined"
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id='email'
+                  label='Email Address'
+                  autoComplete='email'
+                  value={this.state.email}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  // variant="outlined"
                   required
                   fullWidth
-                  // name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
+                  label='Password'
+                  type='password'
+                  id='password'
+                  autoComplete='current-password'
+                  value={this.state.password}
                 />
               </Grid>
 
               <Grid item xs={12}>
                 <TextField
-                  // variant="outlined"
                   required
                   fullWidth
-                  // name="phone"
-                  label="Phone Number"
-                  id="phone"
-                  type="text"
-                  autoComplete="phoneNumber"
+                  label='Phone Number'
+                  id='phone'
+                  type='text'
+                  autoComplete='phoneNumber'
+                  value={this.state.phoneNumbe}
                 />
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="savePassword" color="primary" />}
-                  label="Remember Me."
+                  control={<Checkbox value='savePassword' color='primary' />}
+                  label='Remember Me.'
                 />
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Button
-                  type="submit"
+                  type='submit'
                   fullWidth
-                  variant="contained"
-                  className={(classes.submit, classes.signUp)}
+                  variant='contained'
+                  style={{
+                    backgroundColor: '#F57F17',
+                    padding: '9px',
+                    fontSize: '18px'
+                  }}
                 >
                   Sign Up
                 </Button>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Button
-                  type="button"
+                  type='button'
                   fullWidth
-                  variant="contained"
-                  className={(classes.submit, classes.cancel)}
+                  variant='contained'
+                  style={{
+                    backgroundColor: '#F57F17',
+                    padding: '9px',
+                    fontSize: '18px'
+                  }}
                   onClick={() => {
-                    this.props.history.push("/");
+                    this.props.history.push('/')
                   }}
                 >
                   Cancel
                 </Button>
               </Grid>
             </Grid>
-            <Grid container justify="flex-end">
-              <Link to="/sign-in" className={classes.link}>
-                <Grid item className={classes.account}>
+            <Grid container justify='flex-end'>
+              <Link to='/sign-in'>
+                <Grid
+                  item
+                  style={{
+                    paddingTop: '40px',
+                    paddingBottom: '20px',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
                   Already have an account? Sign in
                 </Grid>
               </Link>
@@ -180,13 +181,9 @@ class Register extends Component {
           </form>
         </div>
       </Container>
-    );
+    )
   }
 }
 
-Register.propTypes = {
-  post: PropTypes.object,
-};
-
-const SignUp = withRouter(connect()(Register));
-export default withStyles(useStyles)(SignUp);
+const SignUp = withRouter(connect()(Register))
+export default SignUp

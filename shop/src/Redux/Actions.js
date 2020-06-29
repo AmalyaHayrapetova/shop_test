@@ -54,3 +54,9 @@ export const deleteSavedItems = id => ({
   type: CONSTANTS.DELETE_SAVED_ITEMS,
   payload: id
 })
+
+export const removeCheckoutItems = items => ({
+  type: CONSTANTS.REMOVE_CHECKOUT_ITEMS_FROM_CART,
+  payload: items
+
+});

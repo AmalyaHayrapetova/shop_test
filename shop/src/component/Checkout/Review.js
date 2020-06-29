@@ -50,9 +50,9 @@ class ReviewOrder extends Component {
   render () {
     let totalPrice = this.props.checkedOutItems.reduce((accumulator, item) => {
       return accumulator + item[0].Price * item.quantity
-    }, 3)
+    }, 0)
     let shippingPrice = totalPrice > 50 ? -5 : 5
-
+    let finalPrice = shippingPrice + totalPrice
     return (
       <div>
         <Typography variant='h6' gutterBottom>
@@ -79,7 +79,7 @@ class ReviewOrder extends Component {
           <ListItem>
             <ListItemText primary='Total' />
             <Typography variant='subtitle1' style={{ fontWeight: 800 }}>
-              {totalPrice}$
+              {finalPrice}$
             </Typography>
           </ListItem>
         </List>

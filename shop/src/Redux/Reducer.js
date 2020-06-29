@@ -6,7 +6,7 @@ const initialState = {
   showCartDialog: false,
   showMenu: true,
   checkedOutItems: [],
-  loggedInUser: null,
+  loggedInUser: {},
   favouriteItems: [],
   showSavedItems: false,
   addressInfo: []
@@ -68,14 +68,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cartItems: state.cartItems.filter(x => x.id !== action.payload)
       }
+    case CONSTANTS.REMOVE_CHECKOUT_ITEMS_FROM_CART:
+      return {
+        ...state,
+        cartItems: []
+      }
+    
     case CONSTANTS.TOGGLE_MENU:
       return { ...state, showMenu: !state.showMenu }
     case CONSTANTS.SET_LOGGED_IN_USER:
-      return { ...state, loggedInUser: action.payload }
+      return { ...state, loggedInUser: action.payload.id }
     case CONSTANTS.LOGOUT:
-      return { ...state, loggedInUser: null, checkedOutItems: [] }
+      return { ...state, loggedInUser:null, checkedOutItems: [] }
     case CONSTANTS.SET_CHECKEDOUT_ITEMS:
-      return { ...state, checkedOutItems: action.payload }
+      return { ...state, checkedOutItems: state.cartItems }
     case CONSTANTS.UPDATE_CART_ITEM_QUANTITY: {
       let index = state.cartItems.findIndex(x => x.id === action.payload.id)
 

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import queryString from 'query-string'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import Item from './Item/Item'
-import Paging from './paging/Paging'
-import ProductsHeader from './ProductHeader/ProductHeader'
-import Menu from './CategoryMenu/CategoryFilter'
-import { callBackendAPI } from '../api/ProductApi'
+import Item from '../Item/Item'
+import Paging from '../paging/Paging'
+import ProductsHeader from '../ProductHeader/ProductHeader'
+import Menu from '../CategoryMenu/CategoryFilter'
+import { callBackendAPI } from '../../api/ProductApi'
 
 const useStyles = makeStyles(theme => ({
   root: {

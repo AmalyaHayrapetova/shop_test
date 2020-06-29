@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import '@material-ui/core/styles'
 import MainCategories from './component/Menu'
-import Product from './component/Product'
+import Product from './component/Product/Product'
 import CartDialog from './component/ShoppingCart/Cart'
 import Default from './component/Default'
 import SignIn from './component/SignIn/SignIn'
@@ -13,6 +13,8 @@ import Home from './component//HomeContent/Home'
 import Header from './component/Header/Header'
 import Details from './component/ProductDetails/Details'
 import FaveItems from './component/Favourites/SavedItems'
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute'
+import Orders from './component/OrderHistory/Order'
 import './App.css'
 
 class App extends React.Component {
@@ -30,8 +32,9 @@ class App extends React.Component {
                 <Route exact path='/' component={Home} />
                 <Route path='/product-list' component={Product} />
                 <Route path='/sign-in' component={SignIn} />
-                <Route path='/sign-up' component={SignUp} />
-                <Route path='/checkout' component={Checkout} />
+                <Route exact path='/sign-up' component={SignUp} />
+                <ProtectedRoute path='/checkout' component={Checkout} />
+                <ProtectedRoute path='/order-history' component={Orders}/>
                 <Route path='/details/:id' component={Details} />
                 <Route path='/saved-items' component={FaveItems} />
                 <Route component={Default} />
