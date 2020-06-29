@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { setLoggedInUser } from '../../Redux/Actions'
@@ -33,7 +33,13 @@ class Register extends Component {
   }
 
   async handleSubmit () {
-    let response = await registerUser(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.phoneNumber)
+    let response = await registerUser(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.email,
+      this.state.password,
+      this.state.phoneNumber
+    )
     if (response[0].statusCode === 404) {
       this.setState({ _isAuthenticated: false })
     } else {
@@ -46,6 +52,12 @@ class Register extends Component {
   }
 
   render () {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    // If user was authenticated, redirect her to where she came from.
+    if (this.state.redirectToReferrer === true) {
+      return <Redirect to={from} />
+    }
+
     return (
       <Container maxWidth='xs'>
         <CssBaseline />
@@ -140,6 +152,17 @@ class Register extends Component {
                     backgroundColor: '#F57F17',
                     padding: '9px',
                     fontSize: '18px'
+                  }}
+                  onClick={() => {
+                    this.handleSubmit()
+                    if (this.state._isAuthenticated) {
+                      this.props.dispatch(
+                        setLoggedInUser({ user: this.state.user.id })
+                      )
+                    } else {
+                      this.setState({ wrongCred: true })
+                      return
+                    }
                   }}
                 >
                   Sign Up

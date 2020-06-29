@@ -172,6 +172,7 @@ class ConnectedHeader extends Component {
                   onClick={() => {
                       this.props.dispatch(logout());
                       this.props.history.push("/");
+                      this.setState({loggedInUser : false})
                     this.setState({ anchorEl: null });
                   }}
                 >

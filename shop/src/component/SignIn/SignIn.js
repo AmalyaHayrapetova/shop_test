@@ -130,6 +130,7 @@ class SignIn extends Component {
                       this.props.dispatch(
                         setLoggedInUser({ user: this.state.user.id })
                       )
+                      this.setState({ loggedInUser: true })
                     } else {
                       this.setState({ wrongCred: true })
                       return
