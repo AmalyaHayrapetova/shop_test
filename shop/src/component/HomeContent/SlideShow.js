@@ -1,6 +1,6 @@
 import React from 'react'
 import { Slide } from 'react-slideshow-image'
-import './SlideShow.css'
+// import './SlideShow.css'
 import Image from 'material-ui-image'
 import imageOne from '../../images/banner1.jpg'
 

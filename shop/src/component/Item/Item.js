@@ -60,6 +60,9 @@ class ConnectedItem extends Component {
           <Tooltip title='Add to Favourite'>
             <IconButton
               size='small'
+              style={{
+                 float:'left'
+              }}
               onClick={e => {
                 e.stopPropagation()
                 if (this.state.addedToFav) {

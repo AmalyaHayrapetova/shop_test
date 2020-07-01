@@ -89,7 +89,7 @@ class ReviewOrder extends Component {
             })}
           </Grid>
 
-          <Grid item container direction='column' xs={12} sm={6}>
+          {/* <Grid item container direction='column' xs={12} sm={6}>
             <Typography variant='h6' gutterBottom>
               Payment details
             </Typography>
@@ -105,7 +105,7 @@ class ReviewOrder extends Component {
                 </React.Fragment>
               ))}
             </Grid>
-          </Grid>
+          </Grid> */}
         </Grid>
       </div>
     )

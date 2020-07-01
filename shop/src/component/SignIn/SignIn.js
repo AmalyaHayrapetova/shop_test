@@ -41,14 +41,13 @@ class SignIn extends Component {
         redirectToReferrer: true,
         customer: response[0]
       })
-      console.log(this.state.redirectToReferrer)
     }
   }
 
-  componentDidMount(){
-  this.handleSubmit()
+  // componentDidMount(){
+  // this.handleSubmit()
 
-  }
+  // }
 
   // setData() {
   //   localStorage.setItem("myData",this.state.user),
@@ -143,7 +142,7 @@ class SignIn extends Component {
                     this.handleSubmit()
                     if (this.state._isAuthenticated) {
                       this.props.dispatch(
-                        setLoggedInUser({user:this.state.customer.Email})
+                        setLoggedInUser({user:this.state.customer})
                       )
                       //this.setState({ loggedInUser: true })
                     } else {
@@ -158,7 +157,7 @@ class SignIn extends Component {
                   <div style={{ color: 'red' }}>
                     Wrong username and/or password
                   </div>
-                ) : ""} */}
+                )  */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Button
