@@ -43,7 +43,7 @@ const Row = props => {
   const { row } = props
   const [open, setOpen] = React.useState(false)
   const classes = useRowStyles()
-console.log("row is ", row)
+  console.log('row is ', row)
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -57,7 +57,7 @@ console.log("row is ", row)
           </IconButton>
         </TableCell>
         <TableCell component='th' scope='row'>
-          1234456
+          1234
         </TableCell>
       </TableRow>
       <TableRow>
@@ -72,22 +72,43 @@ console.log("row is ", row)
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell align='right'>Item Name</TableCell>
-                    <TableCell align='right'>Size</TableCell>
                     <TableCell align='right'>Store</TableCell>
+                    <TableCell align='right'>Size</TableCell>
+                    <TableCell align='right'>Color</TableCell>
                     <TableCell align='right'>Amount</TableCell>
-                    <TableCell align='right'>Total price ($)</TableCell>
+                    <TableCell align='right'>Total price (AMD)</TableCell>
+                    <TableCell align='right'>Status</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row[0].map(historyRow => (
+                  {row[2].map(historyRow => (
                     <TableRow key='14.56.78'>
+                      <TableCell component='th' scope='row'>
+                        {historyRow.OrderDate}
+                      </TableCell>
+
                       <TableCell component='th' scope='row'>
                         {historyRow.ProductName}
                       </TableCell>
-                      <TableCell>{historyRow.size}</TableCell>
-                      <TableCell align='right'>{historyRow.quantity}</TableCell>
                       <TableCell align='right'>
-                        {Math.round(historyRow.quantity * historyRow.Price * 100) / 100}
+                        {historyRow.StoreName}
+                      </TableCell>
+                      <TableCell align='right'>
+                        {historyRow.ProductSize}
+                      </TableCell>
+                      <TableCell align='right'>
+                        {historyRow.ProductColor}
+                      </TableCell>
+                      <TableCell align='right'>{historyRow.Quantity}</TableCell>
+                      <TableCell align='right'>{historyRow.Price}</TableCell>
+
+                      {/* <TableCell align='right'>
+                        {Math.round(
+                          historyRow.Quantity * historyRow.Price * 100
+                        ) / 100}
+                      </TableCell> */}
+                      <TableCell align='right'>
+                        {historyRow.OrderStatusName}
                       </TableCell>
                     </TableRow>
                   ))}

@@ -14,32 +14,55 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import Row from "./OrderHistory"
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import Row from './OrderHistory'
+import { createOrderDetails } from '../../api/OrderDetailsApi'
 
-const mapStateToProps = (state) => {
-  return { items: state.checkedOutItems };
-  
-};
+const mapStateToProps = state => {
+  return { loggedInUser: state.loggedInUser }
+}
 
 class CollapsibleTable extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      items: []
+    }
+  }
+
+  async fetchData () {
+    let results = await createOrderDetails(1)
+
+    this.setState({
+      items: results
+    })
+  }
+
+  componentDidMount () {
+    this.fetchData()
+  }
+
   render () {
-      console.log("item is ", this.props.items[0])
+    console.log('item is ', this.state.items)
     return (
       <TableContainer component={Paper}>
         <Table aria-label='collapsible table'>
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell >Order Number</TableCell>
-              <TableCell >Count</TableCell>
-              <TableCell >Status</TableCell>
+              <TableCell align='left'>Order Number</TableCell>
+              <TableCell></TableCell>
+
+              <TableCell></TableCell>
+
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.props.items.map(row => (
-              <Row key="123445" row={row[0]}  {...this.props}/>
+            {this.state.items.map(row => (
+              <Row key={row.key} row={row} />
             ))}
           </TableBody>
         </Table>
@@ -48,5 +71,5 @@ class CollapsibleTable extends Component {
   }
 }
 
-const Orders = withRouter(connect(mapStateToProps)(CollapsibleTable));
-export default Orders;
+const Orders = withRouter(connect(mapStateToProps)(CollapsibleTable))
+export default Orders

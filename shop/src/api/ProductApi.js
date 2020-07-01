@@ -11,12 +11,12 @@ async function callBackendAPI (gender, subCategory, store) {
           data = await fetch('/product/gender/men')
           break
         }
-        case 'boys': {
-          data = await fetch('/product/gender/boys')
+        case 'boy': {
+          data = await fetch('/product/gender/boy')
           break
         }
-        case 'girls': {
-          data = await fetch('/product/gender/girls')
+        case 'girl': {
+          data = await fetch('/product/gender/girl')
           break
         }
         default: {

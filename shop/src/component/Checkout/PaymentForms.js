@@ -42,10 +42,11 @@ class PaymentForm extends Component {
   render() {
     
     const { classes } = this.props;
-
     let totalPrice = this.props.checkedOutItems.reduce((accumulator, item) => {
-      return accumulator + item[0].Price * item[0].quantity;
-    }, 0);
+      return accumulator + item[0].Price * item.quantity
+    }, 0)
+    let shippingPrice = totalPrice > 25000 ? -1000 : 1000
+    let finalPrice = shippingPrice + totalPrice
 
 
 
@@ -58,7 +59,7 @@ class PaymentForm extends Component {
           <ListItem className={classes.listItem}>
             <ListItemText primary="Total Price" />
             <Typography variant="subtitle1" className={classes.total}>
-              {totalPrice}$
+              {totalPrice}AMD
             </Typography>
           </ListItem>
         </List>

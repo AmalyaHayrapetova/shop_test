@@ -16,13 +16,18 @@ import { connect } from 'react-redux'
 import {
   setCheckedOutItems,
   setAddressInfo,
-  removeCheckoutItems
+  removeCheckoutItems,
+  setOrder
 } from '../../Redux/Actions'
+import { createOrder } from '../../api/OrdersApi'
 import { withStyles } from '@material-ui/styles'
 
 const mapStateToProps = state => {
   return {
-    checkedOutItems: state.checkedOutItems
+    checkedOutItems: state.checkedOutItems,
+    addressInfo: state.addressInfo,
+    loggedInUser: state.loggedInUser,
+    order: state.order
   }
 }
 
@@ -85,7 +90,8 @@ class Checkout extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      activeStep: 0
+      activeStep: 0,
+      order: {}
     }
   }
 
@@ -97,8 +103,19 @@ class Checkout extends Component {
     this.setState({ activeStep: this.state.activeStep - 1 })
   }
 
+  async fetchOrder () {
+    console.log('check ', this.props.checkedOutItems)
+    let response = await createOrder(
+      this.props.addressInfo[0],
+      1,
+      this.props.checkedOutItems[0]
+    )
+    this.setState({
+      order: response[0]
+    })
+  }
+
   render () {
-    const number = 84334324
     const { classes } = this.props
 
     return (
@@ -130,9 +147,8 @@ class Checkout extends Component {
                     Thank you for your order.
                   </Typography>
                   <Typography variant='subtitle1'>
-                    Your order number is #{number}. We have emailed your order
-                    confirmation, and will send you an update when your order
-                    has shipped.
+                    Your order number is #{this.state.order.OrderNumber}. Please wait we
+                    will contact with you. Have a good day!
                   </Typography>
                 </React.Fragment>
               ) : (
@@ -152,9 +168,12 @@ class Checkout extends Component {
                       color='primary'
                       onClick={() => {
                         this.setState({ activeStep: this.state.activeStep + 1 })
+
                         if (this.state.activeStep === steps.length - 1) {
-                          this.props.dispatch(setCheckedOutItems(this.props.checkedOutItems))
-                          // console.log("checkeout ",this.props.checkedOutItems)
+                          this.props.dispatch(
+                            setCheckedOutItems(this.props.checkedOutItems)
+                          )
+                          this.fetchOrder()
                           this.props.dispatch(removeCheckoutItems([]))
                         }
                       }}

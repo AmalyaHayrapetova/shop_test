@@ -60,3 +60,7 @@ export const removeCheckoutItems = items => ({
   payload: items
 
 });
+export const setOrder = order => ({
+  type: CONSTANTS.SET_ORDER,
+  payload: order
+})

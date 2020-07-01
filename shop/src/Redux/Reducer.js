@@ -6,10 +6,11 @@ const initialState = {
   showCartDialog: false,
   showMenu: true,
   checkedOutItems: [],
-  loggedInUser: {},
+  loggedInUser:{},
   favouriteItems: [],
   showSavedItems: false,
-  addressInfo: []
+  addressInfo: [],
+  order: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -73,13 +74,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cartItems: []
       }
-    
+
     case CONSTANTS.TOGGLE_MENU:
       return { ...state, showMenu: !state.showMenu }
     case CONSTANTS.SET_LOGGED_IN_USER:
-      return { ...state, loggedInUser: action.payload.id }
+      return { ...state, loggedInUser: action.payload }
     case CONSTANTS.LOGOUT:
-      return { ...state, loggedInUser:null, checkedOutItems: [] }
+      return { ...state, loggedInUser: null, checkedOutItems: [] }
     case CONSTANTS.SET_CHECKEDOUT_ITEMS:
       return { ...state, checkedOutItems: state.cartItems }
     case CONSTANTS.UPDATE_CART_ITEM_QUANTITY: {
@@ -100,7 +101,10 @@ const rootReducer = (state = initialState, action) => {
       return state
     }
     case CONSTANTS.SET_ADDRESS_INFO: {
-      return { ...state, addressInfo: action.payload }
+      return { ...state, addressInfo: state.addressInfo.concat(action.payload) }
+    }
+    case CONSTANTS.SET_ORDER: {
+      return { ...state, order: action.payload }
     }
     default:
       return state

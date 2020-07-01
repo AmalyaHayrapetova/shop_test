@@ -64,6 +64,7 @@ class ConnectedDetails extends Component {
         item: items,
         product: product,
         quantity: 1,
+        color: null,
         //relatedItems: relatedItems.data.filter((x) => x.id !== item.id),
         itemLoading: false
       })
@@ -275,7 +276,12 @@ class ConnectedDetails extends Component {
                     addItemInCart({
                       ...this.state.product,
                       quantity: this.state.quantity,
-                      size: this.state.size
+                      size: this.state.size,
+                      color: this.state.color,
+                      productName: this.state.product[0].ProductName,
+                      id: this.state.product[0].id,
+                      price: this.state.product[0].Price,
+                      storeName: this.state.product[0].BrandName
                     })
                   )
                 }
@@ -304,26 +310,25 @@ class ConnectedDetails extends Component {
           })}
         </div> */}
         {/* Product description */}
-          <div className='details-main-container'>
-            <div className='product-details-content'>
-              <Typography variant='h6'>Product Details</Typography>
-            </div>
-            <div className='product-details-list'>
-              <Grid container spacing={1}>
-                <Grid item xs={12} md={6}>
-                  <List>
-                    {this.state.item[1].map(desc => {
-                      return (
-                        <ListItem>
-                          <ListItemText primary={desc.MaterialType} />
-                        </ListItem>
-                      )
-                    })}
-                  </List>
-                </Grid>
+        <div className='details-main-container'>
+          <div className='product-details-content'>
+            <Typography variant='h6'>Product Details</Typography>
+          </div>
+          <div className='product-details-list'>
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={6}>
+                <List>
+                  {this.state.item[1].map(desc => {
+                    return (
+                      <ListItem>
+                        <ListItemText primary={desc.MaterialType} />
+                      </ListItem>
+                    )
+                  })}
+                </List>
               </Grid>
-            </div>
-         
+            </Grid>
+          </div>
         </div>
         {/* Relateditems */}
         <div className='related-items-content'>Related Items</div>

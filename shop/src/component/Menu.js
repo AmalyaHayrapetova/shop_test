@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
 const items = [
   { pathName: "/product-list/?gender=men", label: "MEN" },
   { pathName: "/product-list/?gender=women", label: "WOMEN" },
-  { pathName: "/product-list/?gender=boys", label: "BOY" },
-  { pathName: "/product-list/?gender=girls", label: "GIRL" },
+  { pathName: "/product-list/?gender=boy", label: "BOY" },
+  { pathName: "/product-list/?gender=girl", label: "GIRL" },
   { pathName: "/stores", label: "STORES" },
 ];
 

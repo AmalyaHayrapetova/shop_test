@@ -38,11 +38,6 @@ const categories = [
         SubCategoryName: 'Jeans'
       },
       {
-        id: 6,
-        SubCategoryName: 'Jumpers & Cardigans'
-      },
-      { id: 7, SubCategoryName: 'Jumpsuits & Playsuits' },
-      {
         id: 8,
         SubCategoryName: 'Skirts'
       },
@@ -56,15 +51,10 @@ const categories = [
       },
       { id: 11, SubCategoryName: 'Suits & Workwear' },
       {
-        id: 12,
-        SubCategoryName: 'Swim & Beachwear'
-      },
-      {
         id: 13,
         SubCategoryName: 'Tops & T-Shirts'
       },
       { id: 14, SubCategoryName: 'Trousers & Leggings' },
-      { id: 15, SubCategoryName: 'Socks' },
       {
         id: 16,
         SubCategoryName: 'Polos'
@@ -74,42 +64,93 @@ const categories = [
   {
     shoes: [
       {
-        name: 'Jumpers & Cardigans'
+        SubCategoryName: 'Flats',
+        id: 17
       },
       {
-        name: 'Jeans'
+        SubCategoryName: 'Heels',
+        id: 18
       },
       {
-        name: 'Shirts'
+        SubCategoryName: 'Trainers',
+        id: 19
       },
       {
-        name: 'Dresses'
+        SubCategoryName: 'Sandals',
+        id: 20
       },
       {
-        name: 'Tops'
+        SubCategoryName: 'Slippers',
+        id: 21
+      },
+      { SubCategoryName: 'Boots', id: 22 },
+      {
+        SubCategoryName: 'Wedges & Flatforms',
+        id: 23
+      },
+      {
+        SubCategoryName: 'Sneakers',
+        id: 37
       }
     ]
   },
   {
     accessorise: [
       {
-        name: 'Hats'
+        SubCategoryName: 'Masks',
+        id: 37
       },
       {
-        name: 'Rings'
+        SubCategoryName: 'Bags',
+        id: 24
       },
       {
-        name: 'Braslets'
+        SubCategoryName: 'Necklaces',
+        id: 25
       },
       {
-        name: 'Bags',
-
-        id: 1
+        SubCategoryName: 'Earings',
+        id: 26
       },
       {
-        name: 'Glasses',
-
-        id: 1
+        SubCategoryName: 'Sunglasses',
+        id: 27
+      },
+      {
+        SubCategoryName: 'Watches',
+        id: 28
+      },
+      {
+        SubCategoryName: 'Scarves',
+        id: 29
+      },
+      {
+        SubCategoryName: 'Purses',
+        id: 30
+      },
+      {
+        SubCategoryName: 'Braselets',
+        id: 31
+      },
+      {
+        SubCategoryName: 'Hats',
+        id: 32
+      },
+      {
+        SubCategoryName: 'Belts',
+        id: 33
+      },
+      {
+        SubCategoryName: 'Rings',
+        id: 34
+      },
+      {
+        SubCategoryName: 'Gloves',
+        id: 35
+      },
+      {
+        SubCategoryName: 'Ties',
+        id: 36
       }
     ]
   }
@@ -134,9 +175,9 @@ const categoryList = [
     id: 2,
     children: categories[1].shoes.map((x, i) => {
       return {
-        name: x.name,
+        name: x.SubCategoryName,
         id: x.id,
-        url: '?subcategory=' + x.name + '&'
+        url: '?subcategory=' + x.SubCategoryName + '&'
       }
     })
   },
@@ -145,9 +186,9 @@ const categoryList = [
     id: 3,
     children: categories[2].accessorise.map((x, i) => {
       return {
-        name: x.name,
+        name: x.SubCategoryName,
         id: x.id,
-        url: '?subcategory=' + x.name + '&'
+        url: '?subcategory=' + x.SubCategoryName + '&'
       }
     })
   }

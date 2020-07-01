@@ -20,11 +20,11 @@ class Register extends Component {
     super(props)
 
     this.state = {
-      firstName: null,
-      lastName: null,
-      email: null,
-      password: null,
-      phoneNumber: null,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phoneNumber: '',
       _isAuthenticated: false,
       wrongCred: false,
       redirectToReferrer: false
@@ -90,6 +90,9 @@ class Register extends Component {
                   label='First Name'
                   autoFocus
                   value={this.state.firstName}
+                  onChange={e => {
+                    this.setState({ firstName: e.target.value })
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -100,6 +103,9 @@ class Register extends Component {
                   label='Last Name'
                   autoComplete='lname'
                   value={this.state.lastName}
+                  onChange={e => {
+                    this.setState({ lastName: e.target.value })
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -110,6 +116,9 @@ class Register extends Component {
                   label='Email Address'
                   autoComplete='email'
                   value={this.state.email}
+                  onChange={e => {
+                    this.setState({ email: e.target.value })
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -121,6 +130,9 @@ class Register extends Component {
                   id='password'
                   autoComplete='current-password'
                   value={this.state.password}
+                  onChange={e => {
+                    this.setState({ password: e.target.value })
+                  }}
                 />
               </Grid>
 
@@ -132,7 +144,10 @@ class Register extends Component {
                   id='phone'
                   type='text'
                   autoComplete='phoneNumber'
-                  value={this.state.phoneNumbe}
+                  value={this.state.phoneNumber}
+                  onChange={e => {
+                    this.setState({ phoneNumber: e.target.value })
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -157,7 +172,7 @@ class Register extends Component {
                     this.handleSubmit()
                     if (this.state._isAuthenticated) {
                       this.props.dispatch(
-                        setLoggedInUser({ user: this.state.user.id })
+                        setLoggedInUser({ user: this.state.user })
                       )
                     } else {
                       this.setState({ wrongCred: true })

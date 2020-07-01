@@ -30,16 +30,30 @@ class SignIn extends Component {
 
   async handleSubmit () {
     let response = await authenticate(this.state.email, this.state.password)
+    console.log('res ', response[0])
+
     if (response[0].statusCode === 404) {
       this.setState({ _isAuthenticated: false })
+      console.log(false)
     } else {
       this.setState({
         _isAuthenticated: true,
         redirectToReferrer: true,
-        user: response[0].id
+        customer: response[0]
       })
+      console.log(this.state.redirectToReferrer)
     }
   }
+
+  componentDidMount(){
+  this.handleSubmit()
+
+  }
+
+  // setData() {
+  //   localStorage.setItem("myData",this.state.user),
+
+  // }
 
   render () {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
@@ -47,6 +61,7 @@ class SignIn extends Component {
     if (this.state.redirectToReferrer === true) {
       return <Redirect to={from} />
     }
+    console.log('red ', this.state.redirectToReferrer)
 
     return (
       <Container component='main' maxWidth='xs'>
@@ -128,9 +143,9 @@ class SignIn extends Component {
                     this.handleSubmit()
                     if (this.state._isAuthenticated) {
                       this.props.dispatch(
-                        setLoggedInUser({ user: this.state.user.id })
+                        setLoggedInUser({user:this.state.customer.Email})
                       )
-                      this.setState({ loggedInUser: true })
+                      //this.setState({ loggedInUser: true })
                     } else {
                       this.setState({ wrongCred: true })
                       return

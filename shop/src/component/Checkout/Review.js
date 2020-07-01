@@ -9,14 +9,6 @@ import Grid from '@material-ui/core/Grid'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setCheckedOutItems, setAddressInfo } from '../../Redux/Actions'
-
-const products = [
-  { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
-  { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
-  { name: 'Product 3', desc: 'Something else', price: '$6.51' },
-  { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
-  { name: 'Shipping', desc: '', price: 'Free' }
-]
 const payments = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },
@@ -51,7 +43,7 @@ class ReviewOrder extends Component {
     let totalPrice = this.props.checkedOutItems.reduce((accumulator, item) => {
       return accumulator + item[0].Price * item.quantity
     }, 0)
-    let shippingPrice = totalPrice > 50 ? -5 : 5
+    let shippingPrice = totalPrice > 25000 ? -1000 : 1000
     let finalPrice = shippingPrice + totalPrice
     return (
       <div>
@@ -73,13 +65,13 @@ class ReviewOrder extends Component {
           <ListItem>
             <ListItemText primary='Shipping' />
             <Typography variant='subtitle1' style={{ fontWeight: 800 }}>
-              {shippingPrice}$
+              {shippingPrice}AMD
             </Typography>
           </ListItem>
           <ListItem>
             <ListItemText primary='Total' />
             <Typography variant='subtitle1' style={{ fontWeight: 800 }}>
-              {finalPrice}$
+              {finalPrice}AMD
             </Typography>
           </ListItem>
         </List>
