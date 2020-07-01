@@ -58,7 +58,8 @@ class ReviewOrder extends Component {
                   primary={item[0].ProductName}
                   secondary={item.desc}
                 />
-                <Typography variant='body2'>{item[0].Price}$</Typography>
+                <Typography variant='body2'>{item[0].color}</Typography>
+                <Typography variant='body2'>{item[0].Price}AMD</Typography>
               </ListItem>
             )
           })}

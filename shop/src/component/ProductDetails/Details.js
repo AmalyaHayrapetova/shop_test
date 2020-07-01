@@ -18,6 +18,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import { withStyles } from '@material-ui/styles'
 import HoverRating from '../Rating.js'
+import { findDataWithStoreAndSubCategory } from '../../api/RelatedItems'
 import './Details.css'
 
 const useStyles = theme => ({
@@ -53,10 +54,11 @@ class ConnectedDetails extends Component {
     let items = await getProductById(this.props.match.params.id)
     let colors = items[0]
     let product = items[3]
-    // let relatedItems = await Api.searchItems({
-    //   category: item.category,
-    //   gender: item.gender,
-    // });
+
+    let relatedItemsResult = await findDataWithStoreAndSubCategory(
+      product[0].SubCategoryName,
+      product[0].BrandName
+    )
 
     // Make sure this component is still mounted before we set state..
     if (this.isCompMounted) {
@@ -65,7 +67,7 @@ class ConnectedDetails extends Component {
         product: product,
         quantity: 1,
         color: null,
-        //relatedItems: relatedItems.data.filter((x) => x.id !== item.id),
+        relatedItems: relatedItemsResult,
         itemLoading: false
       })
     }
@@ -74,7 +76,7 @@ class ConnectedDetails extends Component {
   componentDidUpdate (prevProps, prevState, snapshot) {
     // If ID of product changed in URL, refetch details for that product
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      this.fetchProductAndRelatedItems(this.props.match.params.id)
+      this.fetchProductAndRelatedItems()
     }
   }
 
@@ -156,7 +158,7 @@ class ConnectedDetails extends Component {
                 fontSize: 16
               }}
             >
-              Price: {this.state.product[0].Price} $
+              Price: {this.state.product[0].Price} AMD
             </div>
 
             <div style={{ fontSize: 14, marginTop: 5, color: '#228B22' }}>
@@ -270,21 +272,18 @@ class ConnectedDetails extends Component {
               color='primary'
               variant='outlined'
               onClick={() => {
-                if (this.state.size !== null) {
-                  console.log(this.state.size)
-                  this.props.dispatch(
-                    addItemInCart({
-                      ...this.state.product,
-                      quantity: this.state.quantity,
-                      size: this.state.size,
-                      color: this.state.color,
-                      productName: this.state.product[0].ProductName,
-                      id: this.state.product[0].id,
-                      price: this.state.product[0].Price,
-                      storeName: this.state.product[0].BrandName
-                    })
-                  )
-                }
+                this.props.dispatch(
+                  addItemInCart({
+                    ...this.state.product,
+                    quantity: this.state.quantity,
+                    size: this.state.size,
+                    color: this.state.color,
+                    productName: this.state.product[0].ProductName,
+                    id: this.state.product[0].id,
+                    price: this.state.product[0].Price,
+                    storeName: this.state.product[0].BrandName
+                  })
+                )
               }}
             >
               Add to Cart <AddShoppingCartIcon style={{ marginLeft: 5 }} />
@@ -307,8 +306,8 @@ class ConnectedDetails extends Component {
                 }}
               />
             );
-          })}
-        </div> */}
+          })} */}
+        {/* </div>  */}
         {/* Product description */}
         <div className='details-main-container'>
           <div className='product-details-content'>
@@ -332,7 +331,7 @@ class ConnectedDetails extends Component {
         </div>
         {/* Relateditems */}
         <div className='related-items-content'>Related Items</div>
-        {this.state.relatedItems.slice(0, 3).map(x => {
+        {this.state.relatedItems[0].slice(0, 3).map(x => {
           return <Item key={x.id} item={x} />
         })}
       </div>

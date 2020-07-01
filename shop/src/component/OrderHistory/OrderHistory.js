@@ -57,7 +57,7 @@ const Row = props => {
           </IconButton>
         </TableCell>
         <TableCell component='th' scope='row'>
-          1234
+          {row}
         </TableCell>
       </TableRow>
       <TableRow>
@@ -81,7 +81,7 @@ const Row = props => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row[2].map(historyRow => (
+                  {row.map(historyRow => (
                     <TableRow key='14.56.78'>
                       <TableCell component='th' scope='row'>
                         {historyRow.OrderDate}
